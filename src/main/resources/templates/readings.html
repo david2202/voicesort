@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="currentPage='readings'">
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+</head>
+
+<body>
+<div layout:fragment="content">
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // Init the browser's own Speech Recognition
+    var recognition = new webkitSpeechRecognition();
+
+    var final_transcript = '';
+
+    initialiseSpeech(recognition);
+
+    var recognizing = false;
+
+    function initialiseSpeech(speech) {
+        speech.lang = "en-AU";
+        speech.interimResults = true;
+        speech.continuous = true;
+
+        speech.onresult = function(event) {
+            var interim_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+                var result;
+                if (event.results[i].isFinal) {
+                    if (event.results[i][0].transcript.includes("address")) {
+                        final_transcript = '';
+                        result = event.results[i][0].transcript.slice(event.results[i][0].transcript.indexOf("address") + "address".length);
+                    } else {
+                        result = event.results[i][0].transcript;
+                    }
+                    final_transcript += result;
+                } else {
+                    if (event.results[i][0].transcript.includes("address")) {
+                        final_transcript = '';
+                        result = event.results[i][0].transcript.slice(event.results[i][0].transcript.indexOf("address") + "address".length);
+                    } else {
+                        result = event.results[i][0].transcript;
+                    }
+                    interim_transcript += result;
+                }
+            }
+            console.log(final_transcript + ' ' + interim_transcript);
+        };
+
+        speech.onstart = function() {
+            recognizing = true;
+        };
+
+        speech.onend = function() {
+            recognizing = false;
+            speech.start();
+        };
+
+        speech.start();
+    }
+    /*]]>*/
+</script>
+</div>
+</body>
+</html>
