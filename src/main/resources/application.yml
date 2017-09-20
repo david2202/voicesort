@@ -20,6 +20,47 @@ spring:
             jadira:
                 usertype:
                     autoRegisterUserTypes: true
+voicesort:
+    ame-api:
+        url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
+    translations:
+        alpha,hey: a
+        bravo,be: b
+        charlie,see: c
+        delta: d
+        echo,eco: e
+        foxtrot: f
+        golf,gold: g
+        hotel: h
+        india: i
+        juliet: j
+        kilo,kg: k
+        lima,lemur: l
+        mike: m
+        november: n
+        oscar: o
+        papa: p
+        quebec: q
+        romeo: r
+        sierra: s
+        tango: t
+        uniform,you: u
+        victor: v
+        whiskey: w
+        x-ray: x
+        yankee: y
+        zulu: z
+        zero: 0
+        one,won: 1
+        two,to: 2
+        three: 3
+        four,for: 4
+        five: 5
+        six: 6
+        seven: 7
+        eight: 8
+        nine: 9
+
 ---
 spring:
     profiles: dev

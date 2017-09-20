@@ -1,7 +1,6 @@
 package au.com.auspost.smartspb.util.json;
 
 
-import au.com.auspost.smartspb.domain.Temperature;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
