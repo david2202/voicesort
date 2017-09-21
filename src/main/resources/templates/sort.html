@@ -33,25 +33,18 @@
                     var result;
                     if (event.results[i].isFinal) {
                         final = true;
-                        if (event.results[i][0].transcript.includes(START_WORD)) {
-                            final_transcript = '';
-                            result = event.results[i][0].transcript.slice(event.results[i][0].transcript.indexOf(START_WORD) + START_WORD.length);
-                        } else {
-                            result = event.results[i][0].transcript;
-                        }
+                        result = event.results[i][0].transcript;
                         final_transcript += ' ' + result;
                     } else {
-                        if (event.results[i][0].transcript.includes(START_WORD)) {
-                            final_transcript = '';
-                            result = event.results[i][0].transcript.slice(event.results[i][0].transcript.indexOf(START_WORD) + START_WORD.length);
-                        } else {
-                            result = event.results[i][0].transcript;
-                        }
+                        result = event.results[i][0].transcript;
                         interim_transcript += ' ' + result;
                     }
                 }
                 if (final) {
-                    console.log(final_transcript);
+                    if (final_transcript.toLowerCase().includes(START_WORD)) {
+                        final_transcript = final_transcript.slice(final_transcript.toLowerCase().indexOf(START_WORD) + START_WORD.length);
+                    }
+                    $("#text").val(final_transcript.toLowerCase());
                     $.get("/rest/api/speech",
                         { text:  final_transcript},
                         function(data) {
@@ -80,6 +73,7 @@
         /*]]>*/
     </script>
     <div class="table-responsive">
+        <input id="text" class="form-control"/>
         <table id="results" class="table">
             <tbody id="body">
                 <tr><td>19 amelia st mckinnon 3204</td><td>RND_1234</td></tr>
