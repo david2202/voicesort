@@ -1,6 +1,8 @@
 package au.com.auspost.smartspb.service;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,8 @@ public class SpeechParser {
     private Map<String,String> translationsExpanded = new HashMap<>();
 
     public static final String ADDRESS_ALLOWABLE_REGEX = "[^a-zA-Z0-9 ']";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpeechParser.class);
 
     @PostConstruct
     public void postConstruct() {
@@ -43,12 +47,16 @@ public class SpeechParser {
                     word = w;
                 }
 
+                if (StringUtils.isNumeric(word)) {
+                    sb.append(" ");
+                }
                 sb.append(word);
                 if (StringUtils.isNumeric(word)) {
                     sb.append(" ");
                 }
             }
         }
+        LOGGER.info(sb.toString());
         return sb.toString();
     }
 

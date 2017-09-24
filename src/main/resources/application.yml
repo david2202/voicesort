@@ -24,7 +24,7 @@ voicesort:
     ame-api:
         url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
     translations:
-        alpha,hey: a
+        alpha,alfa,hey: a
         bravo,be: b
         charlie,see: c
         delta: d
