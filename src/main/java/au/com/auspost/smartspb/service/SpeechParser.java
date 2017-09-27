@@ -68,7 +68,7 @@ public class SpeechParser {
     }
 
     public boolean isPhonetic(String text) {
-        String[] tokens = split(text);
+        String[] tokens = split(text.toLowerCase());
         boolean foundFirst = false;
         for (String token:tokens) {
             if (translationsExpanded.containsKey(token)) {

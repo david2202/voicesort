@@ -53,7 +53,11 @@
                         final_transcript = final_transcript.slice(final_transcript.toLowerCase().indexOf(START_WORD) + START_WORD.length);
                     }
                     $("#text").val(final_transcript.toLowerCase());
-                    doSearch(final_transcript);
+                    if (final_transcript.trim().length > 0) {
+                        doSearch(final_transcript);
+                    } else {
+                        $('#results > tbody').empty();
+                    }
                 }
             };
 
