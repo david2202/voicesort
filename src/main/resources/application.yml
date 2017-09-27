@@ -24,7 +24,7 @@ voicesort:
     ame-api:
         url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
     translations:
-        alpha,alfa,hey: a
+        alpha,alfa,alford,hey: a
         bravo,be: b
         charlie,see: c
         delta: d
@@ -35,24 +35,24 @@ voicesort:
         india: i
         juliet: j
         kilo,kg: k
-        lima,lemur: l
+        lima,lemur,lena,lina: l
         mike: m
         november: n
         oscar: o
-        papa: p
+        papa,piper,harper: p
         quebec: q
         romeo: r
-        sierra: s
+        sierra,ciara: s
         tango: t
         uniform,you: u
         victor: v
-        whiskey: w
+        whiskey,whisky: w
         x-ray: x
         yankee: y
         zulu: z
         zero: 0
         one,won: 1
-        two,to: 2
+        two,to,too: 2
         three: 3
         four,for: 4
         five: 5
@@ -60,6 +60,7 @@ voicesort:
         seven: 7
         eight: 8
         nine: 9
+        slash: /
 
 ---
 spring:

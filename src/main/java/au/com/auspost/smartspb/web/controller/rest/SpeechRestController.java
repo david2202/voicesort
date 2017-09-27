@@ -28,7 +28,7 @@ public class SpeechRestController {
     public List<AddressVO> list(@RequestParam(name ="text", required = true) String text) {
         String search = speechParser.parse(text);
 
-        AddressMatchResponseVO response = addressService.addressLookup(buildRequest(search));
+        AddressMatchResponseVO response = addressService.addressLookup(buildRequest(search, speechParser.isPhonetic(text)));
 
         List<AddressVO> addresses = buildResponse(response);
         return addresses;
@@ -45,11 +45,11 @@ public class SpeechRestController {
         return response;
     }
 
-    private AddressMatchRequestVO buildRequest(String search) {
+    private AddressMatchRequestVO buildRequest(String search, boolean isPhonetic) {
         AddressMatchRequestVO request = new AddressMatchRequestVO()
                 .putId(UUID.randomUUID())
                 .putMaxResults(5)
-                .putPredictive(true)
+                .putPredictive(isPhonetic)
                 .putFilters(new AddressMatchRequestVO.Filters()
                         .putAddressType(AddressMatchRequestVO.Filters.AddressType.STREET)
                         .addPostcode(3127))

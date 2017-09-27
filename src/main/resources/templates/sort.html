@@ -5,6 +5,14 @@
       th:with="currentPage='sort'">
 <head>
     <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+    <style>
+        .text-large {
+            font-size: 40px;
+        }
+        .text-medium {
+            font-size: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,8 +31,8 @@
 
         function initialiseSpeech(speech) {
             speech.lang = "en-AU";
-            speech.interimResults = true;
-            speech.continuous = true;
+            speech.interimResults = false;
+            speech.continuous = false;
 
             speech.onresult = function(event) {
                 var final = false;
@@ -45,17 +53,7 @@
                         final_transcript = final_transcript.slice(final_transcript.toLowerCase().indexOf(START_WORD) + START_WORD.length);
                     }
                     $("#text").val(final_transcript.toLowerCase());
-                    $.get("/rest/api/speech",
-                        { text:  final_transcript},
-                        function(data) {
-                            $('#results > tbody').empty();
-                            var html = '';
-                            for (var i = 0; i < data.length; i++) {
-                                html += '<tr><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
-                            }
-                            $('#results > tbody:last-child').append(html);
-                        }
-                    );
+                    doSearch(final_transcript);
                 }
             };
 
@@ -70,16 +68,46 @@
 
             speech.start();
         }
+
+        function doSearch(text) {
+            $.get("/rest/api/speech",
+                { text:  text},
+                function(data) {
+                    $('#results > tbody').empty();
+                    var html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<tr><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
+                    }
+                    $('#results > tbody:last-child').append(html);
+                }
+            );
+        }
         /*]]>*/
     </script>
-    <div class="table-responsive">
-        <input id="text" class="form-control"/>
-        <table id="results" class="table">
-            <tbody id="body">
-                <tr><td>19 amelia st mckinnon 3204</td><td>RND_1234</td></tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-xs-10">
+            <input id="text" class="form-control text-medium"/>
+        </div>
+        <div class="col-xs-2">
+            <button type="button" id="submit" class="btn">Submit</button>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="results" class="table table-responsive text-large">
+                <tbody id="body">
+                    <tr><td>19 amelia st mckinnon 3204</td><td>RND_1234</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    $("#submit").click(function () {
+        doSearch($("#text").val());
+    })
+    /*]]>*/
+    </script>
 </div>
 </body>
 </html>

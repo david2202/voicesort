@@ -11,6 +11,8 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 @Component
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "voicesort")
@@ -18,14 +20,14 @@ public class SpeechParser {
     private HashMap<String, String> translations;
     private Map<String,String> translationsExpanded = new HashMap<>();
 
-    public static final String ADDRESS_ALLOWABLE_REGEX = "[^a-zA-Z0-9 ']";
+    public static final String ADDRESS_ALLOWABLE_REGEX = "[^a-zA-Z0-9 /']";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpeechParser.class);
 
     @PostConstruct
     public void postConstruct() {
         translations.forEach((k,v)->{
-            for (String s: StringUtils.split(k, ",")) {
+            for (String s: split(k, ",")) {
                 translationsExpanded.put(s, v);
             }
         });
@@ -33,31 +35,51 @@ public class SpeechParser {
 
     public String parse(String text) {
         // Remove all foreign characters
-        String cleaned = text.toLowerCase().replaceAll(ADDRESS_ALLOWABLE_REGEX, " ");
-
-        String[] split = cleaned.split(" ");
+        String cleaned = text.toLowerCase().replaceAll(ADDRESS_ALLOWABLE_REGEX, " ").trim();
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < split.length; i++) {
-            String[] subSplit = split[i].split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
-            for (String w:subSplit) {
-                String word = translationsExpanded.get(w);
-                if (word == null) {
-                    word = w;
-                }
+        String[] tokens = split(cleaned);
+        String[] translatedTokens = new String[tokens.length];
 
-                if (StringUtils.isNumeric(word)) {
+        for (int i = 0; i < tokens.length; i++) {
+            translatedTokens[i] = translationsExpanded.get(tokens[i]);
+            if (translatedTokens[i] == null) {
+                translatedTokens[i] = tokens[i];
+            }
+            if (isNumeric(translatedTokens[i])) {
+                sb.append(translatedTokens[i]);
+            } else if (tokens[i].length() == 1) {
+                if (i > 0 && translatedTokens[i-1].matches(".*\\d.*")) {
+                    sb.append(translatedTokens[i]);
                     sb.append(" ");
                 }
-                sb.append(word);
-                if (StringUtils.isNumeric(word)) {
+            } else {
+                if (i > 0 && translatedTokens[i-1].matches(".*\\d.*")) {
                     sb.append(" ");
+                }
+                sb.append(translatedTokens[i]);
+            }
+        }
+
+        String result = sb.toString().trim();
+        LOGGER.info(result);
+        return result;
+    }
+
+    public boolean isPhonetic(String text) {
+        String[] tokens = split(text);
+        boolean foundFirst = false;
+        for (String token:tokens) {
+            if (translationsExpanded.containsKey(token)) {
+                if (foundFirst) {
+                    return true;
+                } else {
+                    foundFirst = true;
                 }
             }
         }
-        LOGGER.info(sb.toString());
-        return sb.toString();
+        return false;
     }
 
     public HashMap<String, String> getTranslations() {
