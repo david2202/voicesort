@@ -21,6 +21,7 @@ spring:
                 usertype:
                     autoRegisterUserTypes: true
 voicesort:
+    maxResults: 8
     ame-api:
         url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
     translations:
@@ -45,7 +46,7 @@ voicesort:
         sierra,ciara: s
         tango: t
         uniform,you: u
-        victor: v
+        victor,victa: v
         whiskey,whisky: w
         x-ray: x
         yankee: y
@@ -61,6 +62,7 @@ voicesort:
         eight: 8
         nine: 9
         slash: /
+        dash: "-"
 
 ---
 spring:

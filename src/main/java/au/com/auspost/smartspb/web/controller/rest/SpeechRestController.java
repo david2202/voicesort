@@ -6,6 +6,7 @@ import au.com.auspost.smartspb.web.value.AddressVO;
 import au.com.auspost.smartspb.web.value.ame.AddressMatchRequestVO;
 import au.com.auspost.smartspb.web.value.ame.AddressMatchResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,11 +25,15 @@ public class SpeechRestController {
     @Autowired
     private AddressService addressService;
 
+    @Value("${voicesort.maxResults}")
+    private Integer maxResults;
+
     @RequestMapping(method = RequestMethod.GET)
-    public List<AddressVO> list(@RequestParam(name ="text", required = true) String text) {
+    public List<AddressVO> list(@RequestParam(name ="text", required = true) String text,
+                                @RequestParam(name ="postCode", required = true) String postCode) {
         String search = speechParser.parse(text);
 
-        AddressMatchResponseVO response = addressService.addressLookup(buildRequest(search, speechParser.isPhonetic(text)));
+        AddressMatchResponseVO response = addressService.addressLookup(buildRequest(search, postCode, speechParser.isPhonetic(text)));
 
         List<AddressVO> addresses = buildResponse(response);
         return addresses;
@@ -45,14 +50,14 @@ public class SpeechRestController {
         return response;
     }
 
-    private AddressMatchRequestVO buildRequest(String search, boolean isPhonetic) {
+    private AddressMatchRequestVO buildRequest(String search, String postCode, boolean isPhonetic) {
         AddressMatchRequestVO request = new AddressMatchRequestVO()
                 .putId(UUID.randomUUID())
-                .putMaxResults(5)
+                .putMaxResults(maxResults)
                 .putPredictive(isPhonetic)
                 .putFilters(new AddressMatchRequestVO.Filters()
                         .putAddressType(AddressMatchRequestVO.Filters.AddressType.STREET)
-                        .addPostcode(3127))
+                        .addPostcode(Integer.valueOf(postCode)))
                 .putDetail(new AddressMatchRequestVO.Detail()
                         .putUnstructured(true)
                         .putDelivery(true)

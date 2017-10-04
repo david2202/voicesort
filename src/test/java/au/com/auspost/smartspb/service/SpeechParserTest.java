@@ -40,7 +40,10 @@ public class SpeechParserTest {
             "2 / 17a alpha bravo        | 2/ 17a ab",
             "2/17 alpha bravo           | 2/17 ab",
             "to union                   | 2 union",
-            "2/17 a essex               | 2/17a essex"
+            "2/17 a essex               | 2/17a essex",
+            "19 alpha                   | 19 alpha",
+            "20 3/4 5 banool            | 203/45 banool",
+            "3 / 1/333 white            | 3/ 1/333 white"
     },
             trimValues = true,
             splitBy = "\\|")

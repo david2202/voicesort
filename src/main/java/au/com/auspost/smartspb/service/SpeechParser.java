@@ -20,7 +20,7 @@ public class SpeechParser {
     private HashMap<String, String> translations;
     private Map<String,String> translationsExpanded = new HashMap<>();
 
-    public static final String ADDRESS_ALLOWABLE_REGEX = "[^a-zA-Z0-9 /']";
+    public static final String ADDRESS_ALLOWABLE_REGEX = "[^a-zA-Z0-9 /-]";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpeechParser.class);
 
@@ -42,26 +42,39 @@ public class SpeechParser {
         String[] tokens = split(cleaned);
         String[] translatedTokens = new String[tokens.length];
 
+        boolean phonetic = false;
+
         for (int i = 0; i < tokens.length; i++) {
             translatedTokens[i] = translationsExpanded.get(tokens[i]);
             if (translatedTokens[i] == null) {
                 translatedTokens[i] = tokens[i];
             }
             if (isNumeric(translatedTokens[i])) {
+                // Use numeric tokens as is
                 sb.append(translatedTokens[i]);
             } else if (tokens[i].length() == 1) {
-                if (i > 0 && translatedTokens[i-1].matches(".*\\d.*")) {
+                // if it's a single alpha and the previous token contained a number then insert as is followed by
+                // a space.  This is for thoroughfare numbers like 17A
+                if (i > 0 && !translatedTokens[i].matches(".*\\d.*") && translatedTokens[i-1].matches(".*\\d.*")) {
                     sb.append(translatedTokens[i]);
                     sb.append(" ");
                 }
             } else {
-                if (i > 0 && translatedTokens[i-1].matches(".*\\d.*")) {
+                // If we're past the first token and this token is not a number and the previous token contains a number then insert a space
+                if (i > 0 && !translatedTokens[i].matches(".*\\d.*") && translatedTokens[i-1].matches(".*\\d.*")) {
                     sb.append(" ");
                 }
-                sb.append(translatedTokens[i]);
+                // If this is the only phonetic token then don't translate it as it may be the actual street name
+                if (!phonetic && i == tokens.length - 1) {
+                    sb.append(tokens[i]);
+                } else {
+                    sb.append(translatedTokens[i]);
+                }
+            }
+            if (!phonetic && translatedTokens[i].matches(".*[a-z].*")) {
+                phonetic = true;
             }
         }
-
         String result = sb.toString().trim();
         LOGGER.info(result);
         return result;
@@ -71,7 +84,8 @@ public class SpeechParser {
         String[] tokens = split(text.toLowerCase());
         boolean foundFirst = false;
         for (String token:tokens) {
-            if (translationsExpanded.containsKey(token)) {
+            String translated = translationsExpanded.get(token);
+            if (translated != null && translated.matches(".*[a-z].*")) {
                 if (foundFirst) {
                     return true;
                 } else {

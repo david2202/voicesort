@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="currentPage='learn'">
+<head>
+
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <script th:inline="javascript">
+        /*<![CDATA[*/
+        // Init the browser's own Speech Recognition
+        var recognition = new webkitSpeechRecognition();
+
+        var finalTranscript = '';
+        var START_WORD = 'ok';
+
+        initialiseSpeech(recognition);
+
+        var recognizing = false;
+
+        function initialiseSpeech(speech) {
+            speech.lang = "en-AU";
+            speech.interimResults = false;
+            speech.continuous = false;
+
+            speech.onresult = function(event) {
+                var final = false;
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    var result;
+                    if (event.results[i].isFinal) {
+                        final = true;
+                        result = event.results[i][0].transcript;
+                        finalTranscript += ' ' + result;
+                    }
+                }
+                if (final) {
+                    while (finalTranscript.toLowerCase().includes(START_WORD)) {
+                        finalTranscript = finalTranscript.slice(finalTranscript.toLowerCase().indexOf(START_WORD) + START_WORD.length);
+                    }
+                    $("#text").val(finalTranscript.toLowerCase());
+                }
+            };
+
+            speech.onstart = function() {
+                recognizing = true;
+                $("#light").attr("src", "/images/greenLight.png");
+            };
+
+            speech.onend = function() {
+                recognizing = false;
+                $("#light").attr("src", "/images/redLight.png");
+                speech.start();
+            };
+
+            speech.start();
+        }
+        /*]]>*/
+        </script>
+        <div class="row">
+            <div class="col-xs-9">
+                <input id="text" class="form-control text-medium"/>
+            </div>
+            <div class="col-xs-3">
+                <img id="light" th:src="@{/images/redLight.png}" src="../static/images/redLight.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <tr><th>Letter</th><th>Speak</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>A</td><td>Alpha<br/></td></tr>
+                        <tr><td>B</td><td>Bravo<br/></td></tr>
+                        <tr><td>C</td><td>Charlie<br/></td></tr>
+                        <tr><td>D</td><td>Delta<br/></td></tr>
+                        <tr><td>E</td><td>Echo</td></tr>
+                        <tr><td>F</td><td>Foxtrot</td></tr>
+                        <tr><td>G</td><td>Golf</td></tr>
+                        <tr><td>H</td><td>Hotel</td></tr>
+                        <tr><td>I</td><td>India</td></tr>
+                        <tr><td>J</td><td>Juliet</td></tr>
+                        <tr><td>K</td><td>Kilo</td></tr>
+                        <tr><td>L</td><td>Lima</td></tr>
+                        <tr><td>M</td><td>Mike</td></tr>
+                        <tr><td>N</td><td>November</td></tr>
+                        <tr><td>O</td><td>Oscar</td></tr>
+                        <tr><td>P</td><td>Papa</td></tr>
+                        <tr><td>Q</td><td>Quebec</td></tr>
+                        <tr><td>R</td><td>Romeo</td></tr>
+                        <tr><td>S</td><td>Sierra</td></tr>
+                        <tr><td>T</td><td>Tango</td></tr>
+                        <tr><td>U</td><td>Uniform</td></tr>
+                        <tr><td>V</td><td>Victor</td></tr>
+                        <tr><td>W</td><td>Whiskey</td></tr>
+                        <tr><td>X</td><td>Xray</td></tr>
+                        <tr><td>Y</td><td>Yankee</td></tr>
+                        <tr><td>Z</td><td>Zulu</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <tr><th>Address</th><th>Speak</th><th>Alternate</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>U 2 12 SMITH ST</td><td>Ok Two slash twelve smith</td><td>Ok Two dash twelve sierra mike india</td></tr>
+                        <tr><td>104 BOW CRES</td><td>Ok One hundred and four bow</td><td>Ok One zero four bravo oscar whiskey</td></tr>
+                        <tr><td>2A ROWELL AVE</td><td>Ok Two A rowell</td><td>Ok Two A romeo oscar whiskey</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
