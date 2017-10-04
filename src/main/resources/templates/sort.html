@@ -26,7 +26,31 @@
 
         var finalTranscript = '';
         var START_WORD = 'ok';
-        var CHOOSE_WORD = 'choose';
+        var CHOOSE_WORD = 'pick';
+
+        var numberTranslate = {
+            "1": 1,
+            "one": 1,
+            "2": 2,
+            "two": 2,
+            "to": 2,
+            "too": 2,
+            "3": 3,
+            "three": 3,
+            "4": 4,
+            "four": 4,
+            "for": 4,
+            "5": 5,
+            "five": 5,
+            "6": 6,
+            "six": 6,
+            "sex": 6,
+            "7": 7,
+            "seven": 7,
+            "8": 8,
+            "eight": 8,
+            "ate": 8
+        };
 
         initialiseSpeech(recognition);
 
@@ -52,18 +76,7 @@
                     }
                 }
                 if (final) {
-                    while (finalTranscript.toLowerCase().includes(START_WORD)) {
-                        finalTranscript = finalTranscript.slice(finalTranscript.toLowerCase().indexOf(START_WORD) + START_WORD.length);
-                    }
-                    if (finalTranscript.toLowerCase().includes(CHOOSE_WORD)) {
-                        var tokens = finalTranscript.slice(finalTranscript.toLowerCase().indexOf(CHOOSE_WORD) + CHOOSE_WORD.length).trim().split();
-                    }
-                    $("#text").val(finalTranscript.toLowerCase());
-                    if (finalTranscript.trim().length > 0) {
-                        doSearch(finalTranscript, $("#postCode").val());
-                    } else {
-                        $('#results > tbody').empty();
-                    }
+                    doRecognise(finalTranscript.toLowerCase());
                 }
             };
 
@@ -81,14 +94,43 @@
             speech.start();
         }
 
+        function doRecognise(text) {
+            var nbrResults = $("#results > tbody > tr").length;
+            while (text.toLowerCase().includes(START_WORD)) {
+                text = text.slice(text.toLowerCase().indexOf(START_WORD) + START_WORD.length).trim();
+                finalTranscript = text;
+                $('#results > tbody').empty();
+                $("#text").val(text);
+            }
+            if (text.toLowerCase().includes(CHOOSE_WORD) && nbrResults > 0) {
+                 text = text.slice(text.toLowerCase().indexOf(CHOOSE_WORD)).trim();
+                var row;
+                if (nbrResults == 1) {
+                    row = 0;
+                } else {
+                    row = numberTranslate[text.split(" ")[1]] - 1;
+                }
+                $("#results > tbody > tr").removeClass('success');
+                $("#results > tbody > tr:eq(" + row + ")").addClass('success');
+                finalTranscript = '';
+            } else {
+                if (text.trim().length > 0) {
+                    $('#results > tbody').empty();
+                    doSearch(text, $("#postCode").val());
+                } else {
+                    $('#results > tbody').empty();
+                }
+            }
+            $("#text").val(text);
+        }
+
         function doSearch(text, postCode) {
             $.get("/rest/api/speech",
                 {text:  text, postCode: postCode},
                 function(data) {
-                    $('#results > tbody').empty();
                     var html = '';
                     for (var i = 0; i < data.length; i++) {
-                        html += '<tr><td>' + i + '</td><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
+                        html += '<tr><td class="inverse">' + (i+1) + '</td><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
                     }
                     $('#results > tbody:last-child').append(html);
                 }
@@ -104,12 +146,18 @@
                 <option value="3127">3127</option>
             </select>
         </div>
-        <div class="col-xs-7">
+        <div class="col-xs-2">
+            <select id="productType" class="form-control">
+                <option value="LL">Large Letters</option>
+                <option value="SP">Small Parcels</option>
+            </select>
+        </div>
+        <div class="col-xs-6">
             <input id="text" class="form-control text-medium"/>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <button type="button" id="submit" class="btn">Submit</button>
-            <img id="light" th:src="@{/images/redlLight.png}" src="../static/images/redLight.png" />
+            <img id="light" th:src="@{/images/redLight.png}" src="../static/images/redLight.png" />
         </div>
     </div>
     <div class="row">
@@ -117,7 +165,7 @@
             <div class="table-responsive">
                 <table id="results" class="table table-striped table-condensed text-large">
                     <tbody id="body">
-                        <tr><td>1</td><td>19 amelia st mckinnon 3204</td><td>RND_1234</td></tr>
+                        <tr><td class="inverse">1</td><td>19 amelia st mckinnon 3204</td><td>RND_1234</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -126,7 +174,7 @@
     <script th:inline="javascript">
     /*<![CDATA[*/
     $("#submit").click(function () {
-        doSearch($("#text").val(), $("#postCode").val());
+        doRecognise($("#text").val());
     })
     /*]]>*/
     </script>
