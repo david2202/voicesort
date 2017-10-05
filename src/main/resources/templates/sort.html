@@ -23,10 +23,18 @@
         /*<![CDATA[*/
         // Init the browser's own Speech Recognition
         var recognition = new webkitSpeechRecognition();
+        var sounds;
+        var soundSprites = {
+            'silence': [0, 0.1],
+            'success': [1.0, 1.6],
+            'attention': [2.0, 2.6]
+        };
+        var currentSoundEndTime;
 
         var finalTranscript = '';
         var START_WORD = 'ok';
         var CHOOSE_WORD = 'pick';
+        var CANCEL_WORD = 'cancel';
 
         var numberTranslate = {
             "1": 1,
@@ -51,6 +59,20 @@
             "eight": 8,
             "ate": 8
         };
+
+        // See http://stackoverflow.com/questions/25468063/html5-audio-currenttime-attribute-inaccurate for why mp3
+        // doesn't work
+        if (window.location.href.includes("8443") || window.location.href.includes("8080")) {
+            sounds = new Audio('http://' + window.location.hostname + ':8080/sounds/soundSprites.ogg');
+        } else {
+            sounds = new Audio('http://' + window.location.hostname + '/sounds/soundSprites.ogg');
+        }
+
+        sounds.addEventListener('timeupdate', function(event) {
+            if (sounds.currentTime > currentSoundEndTime) {
+                sounds.pause();
+            }
+        }, false);
 
         initialiseSpeech(recognition);
 
@@ -82,12 +104,14 @@
 
             speech.onstart = function() {
                 recognizing = true;
-                $("#light").attr("src", "/images/greenLight.png");
+                $("#redLight").hide();
+                $("#greenLight").show()
             };
 
             speech.onend = function() {
                 recognizing = false;
-                $("#light").attr("src", "/images/redLight.png");
+                $("#redLight").show();
+                $("#greenLight").hide()
                 speech.start();
             };
 
@@ -103,7 +127,7 @@
                 $("#text").val(text);
             }
             if (text.toLowerCase().includes(CHOOSE_WORD) && nbrResults > 0) {
-                 text = text.slice(text.toLowerCase().indexOf(CHOOSE_WORD)).trim();
+                text = text.slice(text.toLowerCase().indexOf(CHOOSE_WORD)).trim();
                 var row;
                 if (nbrResults == 1) {
                     row = 0;
@@ -112,6 +136,10 @@
                 }
                 $("#results > tbody > tr").removeClass('success');
                 $("#results > tbody > tr:eq(" + row + ")").addClass('success');
+                finalTranscript = '';
+            } else if (text.toLowerCase().includes(CANCEL_WORD) && nbrResults > 0) {
+                text = text.slice(text.toLowerCase().indexOf(CANCEL_WORD)).trim();
+                $("#results > tbody > tr").removeClass('success');
                 finalTranscript = '';
             } else {
                 if (text.trim().length > 0) {
@@ -129,18 +157,37 @@
                 {text:  text, postCode: postCode},
                 function(data) {
                     var html = '';
+                    var success = false;
                     for (var i = 0; i < data.length; i++) {
-                        html += '<tr><td class="inverse">' + (i+1) + '</td><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
+                        html += '<tr'
+                        if (data[i].confidence === 'HIGH') {
+                            html += ' class="success"';
+                            play('success');
+                            success = true;
+                        }
+                        html += '><td class="inverse">' + (i+1) + '</td><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
+                    }
+                    if (!success) {
+                        play('attention');
                     }
                     $('#results > tbody:last-child').append(html);
                 }
             );
+        }
+
+        function play(sound) {
+            if (soundSprites[sound]) {
+                sounds.currentTime = soundSprites[sound][0];
+                currentSoundEndTime = soundSprites[sound][1];
+                sounds.play();
+            }
         }
         /*]]>*/
     </script>
     <div class="row">
         <div class="col-xs-2">
             <select id="postCode" class="form-control">
+                <option value="">Please select:</option>
                 <option value="3103">3103</option>
                 <option value="3124">3124</option>
                 <option value="3127">3127</option>
@@ -157,7 +204,8 @@
         </div>
         <div class="col-xs-2">
             <button type="button" id="submit" class="btn">Submit</button>
-            <img id="light" th:src="@{/images/redLight.png}" src="../static/images/redLight.png" />
+            <img id="redLight" th:src="@{/images/redLight.png}" src="../static/images/redLight.png" />
+            <img id="greenLight" th:src="@{/images/greenLight.png}" src="../static/images/greenLight.png" />
         </div>
     </div>
     <div class="row">
@@ -175,6 +223,10 @@
     /*<![CDATA[*/
     $("#submit").click(function () {
         doRecognise($("#text").val());
+    })
+    $("#postCode").click(function () {
+        // Needed as first sound can only play from a user gesture
+        play('silence');
     })
     /*]]>*/
     </script>

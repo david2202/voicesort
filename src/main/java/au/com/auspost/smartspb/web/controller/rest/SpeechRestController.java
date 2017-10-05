@@ -42,9 +42,10 @@ public class SpeechRestController {
     private List<AddressVO> buildResponse(AddressMatchResponseVO addresses) {
         List<AddressVO> response = new ArrayList<>();
         for (AddressMatchResponseVO.Address address:addresses.getResults().get(0).getAddresses()) {
-            AddressVO addressResponse = new AddressVO();
-            addressResponse.setAddress(address.getUnstructured());
-            addressResponse.setRoundId(address.getDeliveryData().getDeliveryOfficeRoundId());
+            AddressVO addressResponse = new AddressVO()
+                    .putAddress(address.getUnstructured())
+                    .putRoundId(address.getDeliveryData().getDeliveryOfficeRoundId())
+                    .putConfidence(address.getConfidence().toString());
             response.add(addressResponse);
         }
         return response;
