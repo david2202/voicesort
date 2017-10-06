@@ -2,7 +2,6 @@ package au.com.auspost.voicesort.web.controller.rest;
 
 import au.com.auspost.voicesort.service.AddressService;
 import au.com.auspost.voicesort.service.SpeechParser;
-import au.com.auspost.voicesort.web.value.AddressVO;
 import au.com.auspost.voicesort.web.value.ame.AddressMatchRequestVO;
 import au.com.auspost.voicesort.web.value.ame.AddressMatchResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @RestController

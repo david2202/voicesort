@@ -25,8 +25,8 @@ public class AddressListService {
         return addressListDao.getOne(id);
     }
 
-    public AddressList findByPostCodeAndStatusCd(Integer postCode, AddressList.Status status) {
-        return addressListDao.findByPostCodeAndStatusCd(postCode, status);
+    public AddressList find(Integer postCode, AddressList.Type type, AddressList.Status status) {
+        return addressListDao.findByPostCodeAndTypeAndStatusCd(postCode, type, status);
     }
 
     @Transactional(propagation= Propagation.REQUIRED)
@@ -34,7 +34,7 @@ public class AddressListService {
         // If we are saving an OPEN list, then close any other list for this round with 'Delivering' status
         if (addressList.getStatusCd() == AddressList.Status.OPEN) {
             LOGGER.info("Saving Address List with 'OPEN'");
-            AddressList existingAddressList = addressListDao.findByPostCodeAndStatusCd(addressList.getPostCode(), AddressList.Status.OPEN);
+            AddressList existingAddressList = addressListDao.findByPostCodeAndTypeAndStatusCd(addressList.getPostCode(), addressList.getType(), AddressList.Status.OPEN);
             if (existingAddressList != null && !existingAddressList.getId().equals(addressList.getId())) {
                 LOGGER.info("Closing existing address list {}", existingAddressList.getId());
                 existingAddressList.close();

@@ -25,7 +25,7 @@ spring:
 voicesort:
     maxResults: 8
     ame-api:
-        url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
+        url: http://ame-api-stest.ap-southeast-2.elasticbeanstalk.com/api/address
     translations:
         alpha,alfa,alford,hey: a
         bravo,be: b
@@ -77,7 +77,9 @@ spring:
 ---
 spring:
     profiles: infra
-
+voicesort:
+    ame-api:
+        url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
 ---
 spring:
     profiles: pdev

@@ -1,9 +1,9 @@
 package au.com.auspost.voicesort.web.controller.rest;
 
-import au.com.auspost.voicesort.dao.AddressListDao;
 import au.com.auspost.voicesort.domain.AddressList;
 import au.com.auspost.voicesort.domain.AddressListItem;
 import au.com.auspost.voicesort.service.AddressListService;
+import au.com.auspost.voicesort.web.value.AddressListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +17,15 @@ public class AddressListRestController {
     private AddressListService addressListService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public AddressList get(@PathVariable("id") int id) {
-        return addressListService.load(id);
+    public AddressListVO get(@PathVariable("id") int id) {
+        return new AddressListVO(addressListService.load(id));
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public AddressList find(@RequestParam("postCode") Integer postCode,
+                            @RequestParam("type") AddressList.Type type,
                             HttpServletResponse response) {
-        AddressList addressList = addressListService.findByPostCodeAndStatusCd(postCode, AddressList.Status.OPEN);
+        AddressList addressList = addressListService.find(postCode, type, AddressList.Status.OPEN);
         if (addressList == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return null;

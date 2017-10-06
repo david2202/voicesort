@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressListDao extends JpaRepository<AddressList, Integer> {
-    AddressList findByPostCodeAndStatusCd(Integer postCode, AddressList.Status status);
+    AddressList findByPostCodeAndTypeAndStatusCd(Integer postCode, AddressList.Type type, AddressList.Status status);
 }
