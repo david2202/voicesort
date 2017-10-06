@@ -60,6 +60,10 @@
             "ate": 8
         };
 
+        var currentListId;
+        var lastListItemId;
+        var currentAddresses;
+
         // See http://stackoverflow.com/questions/25468063/html5-audio-currenttime-attribute-inaccurate for why mp3
         // doesn't work
         if (window.location.href.includes("8443") || window.location.href.includes("8080")) {
@@ -125,6 +129,8 @@
                 finalTranscript = text;
                 $('#results > tbody').empty();
                 $("#text").val(text);
+                lastListItemId = '';
+                currentAddresses = '';
             }
             if (text.toLowerCase().includes(CHOOSE_WORD) && nbrResults > 0) {
                 text = text.slice(text.toLowerCase().indexOf(CHOOSE_WORD)).trim();
@@ -136,11 +142,14 @@
                 }
                 $("#results > tbody > tr").removeClass('success');
                 $("#results > tbody > tr:eq(" + row + ")").addClass('success');
+                deleteLastAddress();
+                addAddressToList();
                 finalTranscript = '';
             } else if (text.toLowerCase().includes(CANCEL_WORD) && nbrResults > 0) {
                 text = text.slice(text.toLowerCase().indexOf(CANCEL_WORD)).trim();
                 $("#results > tbody > tr").removeClass('success');
                 finalTranscript = '';
+                deleteLastAddress();
             } else {
                 if (text.trim().length > 0) {
                     $('#results > tbody').empty();
@@ -158,21 +167,85 @@
                 function(data) {
                     var html = '';
                     var success = false;
-                    for (var i = 0; i < data.length; i++) {
+                    var resultsList = data.results[0].addresses;
+                    currentAddresses = resultsList;
+                    for (var i = 0; i < resultsList.length; i++) {
                         html += '<tr'
-                        if (data[i].confidence === 'HIGH') {
+                        if (resultsList[i].confidence === 'HIGH') {
                             html += ' class="success"';
                             play('success');
                             success = true;
                         }
-                        html += '><td class="inverse">' + (i+1) + '</td><td>' + data[i].address + '</td><td>' + data[i].roundId + '</td></tr>';
-                    }
-                    if (!success) {
-                        play('attention');
+                        html += '><td class="inverse">' + (i+1) + '</td><td>' + resultsList[i].unstructured + '</td><td>' + resultsList[i].deliveryData.deliveryOfficeRoundId + '</td></tr>';
                     }
                     $('#results > tbody:last-child').append(html);
+                    if (success) {
+                        addAddressToList();
+                    } else {
+                        play('attention');
+                    }
                 }
             );
+        }
+
+        function createNewList() {
+            $.ajax({
+                url: '/rest/api/addressList',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(
+                    {
+                        postCode: postCode,
+                        statusCd: "OPEN",
+                        type: $("#productType").val()
+                    }),
+                type: "POST",
+                success: function(data) {
+                    currentListId = data.id;
+                }
+            });
+        }
+
+        function addAddressToList() {
+            var row = $("#results > tbody > tr.success").index('tr');
+            $.ajax({
+                url: '/rest/api/addressList/' + currentListId + '/addressListItem',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(
+                    {
+                        text: currentAddresses[row].unstructured,
+                        dpid: currentAddresses[row].deliveryData.dpid,
+                        deliveryOfficeRoundId: currentAddresses[row].deliveryData.deliveryOfficeRoundId,
+                        sectionSequence: currentAddresses[row].deliveryData.sectionSequence,
+                        dpidSequenceNumber: currentAddresses[row].deliveryData.deliveryPointSequence,
+                        geo: {
+                            latitude: currentAddresses[row].geoDataList[0].latitude,
+                            longitude: currentAddresses[row].geoDataList[0].longitude
+                        }
+                    }),
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                success: function(data) {
+                    lastListItemId = data.id;
+                }
+            });
+        }
+
+        function deleteLastAddress() {
+            if (lastListItemId != '') {
+                $.ajax({
+                    url: '/rest/api/addressList/' + currentListId + '/addressListItem/' + lastListItemId,
+                    type: "DELETE",
+                    success: function(data) {
+                        lastListItemId = '';
+                    }
+                });
+            }
         }
 
         function play(sound) {
@@ -184,6 +257,24 @@
         }
         /*]]>*/
     </script>
+
+    <div id="existingListConfirm" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Start new address list?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>An open delivery list exists for the selected postcode, do you want to continue with that or start a new one?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="existingListContinueBtn" class="btn btn-primary deliveryListBtns" style="float:left;">Continue</button>
+                    <button type="button" id="existingListStartNewBtn" class="btn btn-default deliveryListBtns">Start New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-2">
             <select id="postCode" class="form-control">
@@ -195,8 +286,8 @@
         </div>
         <div class="col-xs-2">
             <select id="productType" class="form-control">
-                <option value="LL">Large Letters</option>
-                <option value="SP">Small Parcels</option>
+                <option value="LARGE_LETTER">Large Letters</option>
+                <option value="SMALL_PARCEL">Small Parcels</option>
             </select>
         </div>
         <div class="col-xs-6">
@@ -227,7 +318,34 @@
     $("#postCode").click(function () {
         // Needed as first sound can only play from a user gesture
         play('silence');
-    })
+    });
+
+    $("#postCode").change(function () {
+        var postCode = $("#postCode").val();
+        $.ajax({
+            url: '/rest/api/addressList',
+            data: {postCode: postCode},
+            type: "GET",
+            success: function(data) {
+                currentListId = data.id;
+                $("#existingListConfirm").modal({backdrop: "static"});
+            },
+            statusCode: {
+                404: function() {
+                    createNewList();
+                }
+            }
+        });
+    });
+
+    $("#existingListContinueBtn").click(function() {
+        $("#existingListConfirm").modal('hide');
+    });
+
+    $("#existingListStartNewBtn").click(function() {
+        createNewList();
+        $("#existingListConfirm").modal('hide');
+    });
     /*]]>*/
     </script>
 </div>
