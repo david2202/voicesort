@@ -18,7 +18,12 @@
         var expires = "expires="+ d.toUTCString();
         var path = "path=/"
 
-        document.cookie = device + ";" + expires + ";" + path;
+        var cookie = device + ";" + expires + ";" + path;
+        if (!window.location.href.includes("8443") && !window.location.href.includes("8080")) {
+            cookie += ";secure";
+        }
+
+        document.cookie = cookie;
         $("#uuid").html(uuid);
     });
     /*]]>*/

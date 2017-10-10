@@ -164,7 +164,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: uuid
-                value: 0ec31ea3-91e5-4bb1-9168-e417652d2ab3
+                value: f4e25b91-4012-489d-8f67-3173952f8778
             - column:
                 name: version
                 value: 0
@@ -180,7 +180,7 @@ databaseChangeLog:
     - changeSet:
         id: 1.0-3-pdev
         author: howed
-        comment: Insert device registrations for local dev
+        comment: Insert device registrations for PDEV
         context: pdev
         changes:
         - insert:
@@ -206,7 +206,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: uuid
-                value: 723528c2-b417-4118-820c-9738197f9cc5
+                value: 2bd11cc8-e569-41b1-ada7-757e7e92052f
             - column:
                 name: version
                 value: 0
