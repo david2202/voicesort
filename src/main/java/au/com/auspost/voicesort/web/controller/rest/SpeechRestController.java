@@ -42,7 +42,7 @@ public class SpeechRestController {
                 .putPredictive(isPhonetic)
                 .putFilters(new AddressMatchRequestVO.Filters()
                         .putAddressType(AddressMatchRequestVO.Filters.AddressType.STREET)
-                        .addPostcode(Integer.valueOf(postCode)))
+                )
                 .putDetail(new AddressMatchRequestVO.Detail()
                         .putUnstructured(true)
                         .putDelivery(true)
@@ -51,6 +51,7 @@ public class SpeechRestController {
                 .addAddress(new AddressMatchRequestVO.Address()
                         .putId(UUID.randomUUID().toString())
                         .putText(search)
+                        .putPostcode(postCode)
                 );
         return request;
     }

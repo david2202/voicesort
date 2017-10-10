@@ -112,3 +112,110 @@ databaseChangeLog:
                 type: java.sql.Types.TIMESTAMP
                 constraints:
                   nullable: false
+    - changeSet:
+        id: 1.0-2
+        author: howed
+        comment: Create device registration tables
+        changes:
+        - createTable:
+            tableName: device
+            columns:
+            - column:
+                name: id
+                type: java.sql.Types.INTEGER
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: version
+                type: java.sql.Types.BIGINT
+                constraints:
+                  nullable: false
+            - column:
+                name: uuid
+                type: java.sql.Types.VARCHAR(36)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: description
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: false
+            - column:
+                name: created
+                type: java.sql.Types.TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: last_updated
+                type: java.sql.Types.TIMESTAMP
+                constraints:
+                  nullable: false
+    - changeSet:
+        id: 1.0-3-dev
+        author: howed
+        comment: Insert device registrations for local dev
+        context: dev
+        changes:
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: 0ec31ea3-91e5-4bb1-9168-e417652d2ab3
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'Development David Howe desktop'
+            - column:
+                name: created
+                value: "2017-10-10T10:47:00"
+            - column:
+                name: last_updated
+                value: "2017-10-10T10:47:00"
+    - changeSet:
+        id: 1.0-3-pdev
+        author: howed
+        comment: Insert device registrations for local dev
+        context: pdev
+        changes:
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: e78eebff-b8e7-4127-877c-c87643b1f286
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'PDEV David Howe desktop'
+            - column:
+                name: created
+                value: "2017-10-10T10:47:00"
+            - column:
+                name: last_updated
+                value: "2017-10-10T10:47:00"
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: 723528c2-b417-4118-820c-9738197f9cc5
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'PDEV Samsung tablet'
+            - column:
+                name: created
+                value: "2017-10-10T12:14:00"
+            - column:
+                name: last_updated
+                value: "2017-10-10T12:14:00"

@@ -26,8 +26,8 @@
         var sounds;
         var soundSprites = {
             'silence': [0, 0.1],
-            'success': [1.0, 1.6],
-            'attention': [2.0, 2.6]
+            'success': [2.0, 2.6],
+            'attention': [4.0, 4.6]
         };
         var currentSoundEndTime;
 
@@ -35,6 +35,9 @@
         var START_WORD = 'ok';
         var CHOOSE_WORD = 'pick';
         var CANCEL_WORD = 'cancel';
+        var SHOW_WORD = 'show';
+        var LIST_WORD = 'list';
+        var SPEECH_WORD = 'speech';
 
         var numberTranslate = {
             "1": 1,
@@ -141,15 +144,28 @@
                     row = numberTranslate[text.split(" ")[1]] - 1;
                 }
                 $("#results > tbody > tr").removeClass('success');
-                $("#results > tbody > tr:eq(" + row + ")").addClass('success');
-                deleteLastAddress();
-                addAddressToList();
+                if (row < nbrResults) {
+                    $("#results > tbody > tr:eq(" + row + ")").addClass('success');
+                    deleteLastAddress();
+                    addAddressToList();
+                    play('success');
+                }
                 finalTranscript = '';
+            } else if (text.toLowerCase().includes(SHOW_WORD) && nbrResults > 0) {
+                text = text.slice(text.toLowerCase().indexOf(SHOW_WORD)).trim();
+                if (text.toLowerCase().includes(LIST_WORD)) {
+                    $("#listTab").click();
+                    finalTranscript = '';
+                } else if (text.toLowerCase().includes(SPEECH_WORD)) {
+                    $("#speechTab").click();
+                    finalTranscript = '';
+                }
             } else if (text.toLowerCase().includes(CANCEL_WORD) && nbrResults > 0) {
                 text = text.slice(text.toLowerCase().indexOf(CANCEL_WORD)).trim();
                 $("#results > tbody > tr").removeClass('success');
                 finalTranscript = '';
                 deleteLastAddress();
+                play('attention');
             } else {
                 if (text.trim().length > 0) {
                     $('#results > tbody').empty();
@@ -313,7 +329,7 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#speech">Speech</a></li>
+        <li class="active"><a id="speechTab" data-toggle="tab" href="#speech">Speech</a></li>
         <li><a id="listTab" data-toggle="tab" href="#list">List</a></li>
     </ul>
 

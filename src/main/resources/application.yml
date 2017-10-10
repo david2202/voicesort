@@ -23,9 +23,10 @@ spring:
         console:
             enabled: true
 voicesort:
+    deviceSecurityEnabled: true
     maxResults: 8
     ame-api:
-        url: http://ame-api-stest.ap-southeast-2.elasticbeanstalk.com/api/address
+        url: http://ame-api-sdev.ap-southeast-2.elasticbeanstalk.com/api/address
     translations:
         alpha,alfa,alford,hey: a
         bravo,be: b
@@ -68,23 +69,24 @@ voicesort:
 
 ---
 spring:
+    profiles: infra
+voicesort:
+    ame-api:
+        url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
+liquibase:
+    contexts: infra
+---
+spring:
     profiles: dev
     h2:
         console:
           enabled: true
     thymeleaf:
         cache: false
----
-spring:
-    profiles: infra
-voicesort:
-    ame-api:
-        url: http://ame-api-ext.ap-southeast-2.elasticbeanstalk.com/api/address
+liquibase:
+    contexts: dev
 ---
 spring:
     profiles: pdev
-    datasource:
-      url: jdbc:mysql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}?autoReconnect=true&amp;serverTimezone=UTC
-      username: ${RDS_USERNAME}
-      password: ${RDS_PASSWORD}
-      driver-class-name: com.mysql.jdbc.Driver
+liquibase:
+    contexts: pdev
