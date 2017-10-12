@@ -148,7 +148,7 @@
                     $("#results > tbody > tr:eq(" + row + ")").addClass('success');
                     deleteLastAddress();
                     addAddressToList();
-                    play('success');
+                    speak(currentAddresses[row].deliveryData.deliveryOfficeRoundId.toString().substring(1,3));
                 }
                 finalTranscript = '';
             } else if (text.toLowerCase().includes(SHOW_WORD) && nbrResults > 0) {
@@ -189,10 +189,10 @@
                         html += '<tr'
                         if (resultsList[i].confidence === 'HIGH') {
                             html += ' class="success"';
-                            play('success');
+                            speak(resultsList[i].deliveryData.deliveryOfficeRoundId.toString().substring(1,3));
                             success = true;
                         }
-                        html += '><td class="inverse">' + (i+1) + '</td><td>' + resultsList[i].unstructured + '</td><td>' + resultsList[i].deliveryData.deliveryOfficeRoundId + '</td></tr>';
+                        html += '><td class="inverse">' + (i + 1) + '</td><td>' + resultsList[i].unstructured + '</td><td>' + resultsList[i].deliveryData.deliveryOfficeRoundId + '</td></tr>';
                     }
                     $('#results > tbody:last-child').append(html);
                     if (success) {
@@ -290,6 +290,16 @@
                 currentSoundEndTime = soundSprites[sound][1];
                 sounds.play();
             }
+        }
+
+        function speak(message) {
+            var msg = new SpeechSynthesisUtterance();
+            msg.volume = 1;  // 0 to 1
+            msg.rate = 1;    // 0.1 to 10
+            msg.pitch = 0.5; // 0 to 2
+            msg.text = message;
+            msg.lang = 'en-GB';
+            window.speechSynthesis.speak(msg);
         }
         /*]]>*/
     </script>

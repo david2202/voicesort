@@ -170,7 +170,25 @@ databaseChangeLog:
                 value: 0
             - column:
                 name: description
-                value: 'Development David Howe desktop'
+                value: 'Development David Howe linux desktop'
+            - column:
+                name: created
+                value: "2017-10-10T10:47:00"
+            - column:
+                name: last_updated
+                value: "2017-10-10T10:47:00"
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: 1eba7418-38d6-48e6-ac21-e409d23ea0f2
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'Development David Howe windows desktop'
             - column:
                 name: created
                 value: "2017-10-10T10:47:00"
@@ -194,13 +212,32 @@ databaseChangeLog:
                 value: 0
             - column:
                 name: description
-                value: 'PDEV David Howe desktop'
+                value: 'PDEV David Howe linux desktop'
             - column:
                 name: created
                 value: "2017-10-10T10:47:00"
             - column:
                 name: last_updated
                 value: "2017-10-10T10:47:00"
+
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: 3b337df1-3032-484f-b62e-9827603dac85
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'PDEV David Howe windows desktop'
+            - column:
+                name: created
+                value: "2017-10-11T09:16:00"
+            - column:
+                name: last_updated
+                value: "2017-10-11T09:16:00"
         - insert:
             tableName: device
             columns:
