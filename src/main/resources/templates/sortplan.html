@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="currentPage='sortplan'">
+<head>
+    <style>
+        .text-large {
+            font-size: 40px;
+        }
+        .text-medium {
+            font-size: 30px;
+        }
+        .table > tbody > tr:first-child > td {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        // Init the browser's own Speech Recognition
+        var recognition = new webkitSpeechRecognition();
+        var sounds;
+        var soundSprites = {
+            'silence': [0, 0.1],
+            'success': [2.0, 2.6],
+            'attention': [4.0, 4.6]
+        };
+        var currentSoundEndTime;
+
+        var finalTranscript = '';
+        var START_WORD = 'ok';
+
+        var numberTranslate = {
+            "1": 1,
+            "one": 1,
+            "2": 2,
+            "two": 2,
+            "to": 2,
+            "too": 2,
+            "3": 3,
+            "three": 3,
+            "4": 4,
+            "four": 4,
+            "for": 4,
+            "5": 5,
+            "five": 5,
+            "6": 6,
+            "six": 6,
+            "sex": 6,
+            "7": 7,
+            "seven": 7,
+            "8": 8,
+            "eight": 8,
+            "ate": 8
+        };
+
+        // See http://stackoverflow.com/questions/25468063/html5-audio-currenttime-attribute-inaccurate for why mp3
+        // doesn't work
+        if (window.location.href.includes("8443") || window.location.href.includes("8080")) {
+            sounds = new Audio('http://' + window.location.hostname + ':8080/sounds/soundSprites.ogg');
+        } else {
+            sounds = new Audio('http://' + window.location.hostname + '/sounds/soundSprites.ogg');
+        }
+
+        sounds.addEventListener('timeupdate', function(event) {
+            if (sounds.currentTime > currentSoundEndTime) {
+                sounds.pause();
+            }
+        }, false);
+
+        initialiseSpeech(recognition);
+
+        var recognizing = false;
+
+        function initialiseSpeech(speech) {
+            speech.lang = "en-AU";
+            speech.interimResults = false;
+            speech.continuous = false;
+
+            speech.onresult = function(event) {
+                var final = false;
+                var interim_transcript = '';
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    var result;
+                    if (event.results[i].isFinal) {
+                        final = true;
+                        result = event.results[i][0].transcript;
+                        finalTranscript += ' ' + result;
+                    } else {
+                        result = event.results[i][0].transcript;
+                        interim_transcript += ' ' + result;
+                    }
+                }
+                if (final) {
+                    doRecognise(finalTranscript.toLowerCase());
+                }
+            };
+
+            speech.onstart = function() {
+                recognizing = true;
+                $("#redLight").hide();
+                $("#greenLight").show()
+            };
+
+            speech.onend = function() {
+                recognizing = false;
+                $("#redLight").show();
+                $("#greenLight").hide()
+                speech.start();
+            };
+
+            speech.start();
+        }
+
+        function doRecognise(text) {
+            while (text.toLowerCase().includes(START_WORD)) {
+                text = text.slice(text.toLowerCase().indexOf(START_WORD) + START_WORD.length).trim();
+                finalTranscript = text;
+            }
+            if (text.trim().length > 0) {
+                doSearch(text, $("#sortPlan").val());
+            }
+            $("#text").val(text);
+        }
+
+        function doSearch(text, sortPlanId) {
+            $.get("/rest/api/sortPlan/" + sortPlanId + "/break",
+                {postCode: text},
+                function(data) {
+                    $("#result").text(data.mnemonic);
+                    speak(data.mnemonic);
+                }
+            );
+        }
+
+        function play(sound) {
+            if (soundSprites[sound]) {
+                sounds.currentTime = soundSprites[sound][0];
+                currentSoundEndTime = soundSprites[sound][1];
+                sounds.play();
+            }
+        }
+
+        function speak(message) {
+            var msg = new SpeechSynthesisUtterance();
+            msg.volume = 1;  // 0 to 1
+            msg.rate = 1;    // 0.1 to 10
+            msg.pitch = 0.5; // 0 to 2
+            msg.text = message;
+            msg.lang = 'en-GB';
+            window.speechSynthesis.speak(msg);
+        }
+        /*]]>*/
+    </script>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <select id="sortPlan" class="form-control">
+                <option value="">Please select:</option>
+                <option value="1">Dandenong Amazon Victoria</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="speech">
+        <div class="row">
+            <div class="col-xs-6">
+                <input id="text" class="form-control text-medium"/>
+            </div>
+            <div class="col-xs-2">
+                <button type="button" id="submit" class="btn">Submit</button>
+                <img id="redLight" th:src="@{/images/redLight.png}" src="../static/images/redLight.png" />
+                <img id="greenLight" th:src="@{/images/greenLight.png}" src="../static/images/greenLight.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <span id="result"/>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+    <!--
+    -->
+    /*<![CDATA[*/
+    $("#submit").click(function () {
+        doRecognise($("#text").val());
+    });
+
+    $("#sortPlan").click(function () {
+        // Needed as first sound can only play from a user gesture
+        play('silence');
+    });
+    /*]]>*/
+    </script>
+</div>
+</body>
+</html>

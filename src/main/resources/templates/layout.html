@@ -43,6 +43,7 @@
         <div class="collapse navbar-collapse" id="navigationbar">
             <ul class="nav navbar-nav">
                 <li th:classappend="${currentPage == 'sort'} ? 'active'"><a th:href="@{/sort}" href="sort.html">Sort</a></li>
+                <li th:classappend="${currentPage == 'sortplan'} ? 'active'"><a th:href="@{/sortplan}" href="sortplan.html">Sort Plan</a></li>
                 <li th:classappend="${currentPage == 'learn'} ? 'active'"><a th:href="@{/learn}" href="learn.html">Learn</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

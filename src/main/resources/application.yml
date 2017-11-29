@@ -22,6 +22,8 @@ spring:
     h2:
         console:
             enabled: true
+hibernate:
+
 voicesort:
     deviceSecurityEnabled: true
     maxResults: 8
