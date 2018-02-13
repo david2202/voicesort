@@ -1280,3 +1280,1912 @@ databaseChangeLog:
             - column:
                 name: postcode_end
                 value: 3983
+
+        - insert:
+            tableName: sort_plan
+            columns:
+            - column:
+                name: description
+                value: Melbourne Parcel Facility
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: PT MELBOURNE
+            - column:
+                name: mnemonic
+                value: PT MELBOURNE
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 3000
+            - column:
+                name: postcode_end
+                value: 3006
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 3008
+            - column:
+                name: postcode_end
+                value: 3008
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 3010
+            - column:
+                name: postcode_end
+                value: 3010
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 3050
+            - column:
+                name: postcode_end
+                value: 3054
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 3205
+            - column:
+                name: postcode_end
+                value: 3207
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+            - column:
+                name: postcode_start
+                value: 8001
+            - column:
+                name: postcode_end
+                value: 8399
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: RICHMOND
+            - column:
+                name: mnemonic
+                value: RICHMOND
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+            - column:
+                name: postcode_start
+                value: 3121
+            - column:
+                name: postcode_end
+                value: 3121
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+            - column:
+                name: postcode_start
+                value: 3141
+            - column:
+                name: postcode_end
+                value: 3141
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+            - column:
+                name: postcode_start
+                value: 3181
+            - column:
+                name: postcode_end
+                value: 3181
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: TEMPLESTOWE
+            - column:
+                name: mnemonic
+                value: TEMPLESTOWE
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE'
+            - column:
+                name: postcode_start
+                value: 3105
+            - column:
+                name: postcode_end
+                value: 3109
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE'
+            - column:
+                name: postcode_start
+                value: 3110
+            - column:
+                name: postcode_end
+                value: 3111
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: DEEPDENE
+            - column:
+                name: mnemonic
+                value: DEEPDENE
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'DEEPDENE'
+            - column:
+                name: postcode_start
+                value: 3101
+            - column:
+                name: postcode_end
+                value: 3104
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: MOOROOLBARK
+            - column:
+                name: mnemonic
+                value: MOOROOLBARK
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+            - column:
+                name: postcode_start
+                value: 3116
+            - column:
+                name: postcode_end
+                value: 3116
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+            - column:
+                name: postcode_start
+                value: 3136
+            - column:
+                name: postcode_end
+                value: 3138
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+            - column:
+                name: postcode_start
+                value: 3140
+            - column:
+                name: postcode_end
+                value: 3140
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+            - column:
+                name: postcode_start
+                value: 3765
+            - column:
+                name: postcode_end
+                value: 3770
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+            - column:
+                name: postcode_start
+                value: 3796
+            - column:
+                name: postcode_end
+                value: 3796
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: OAKLEIGH
+            - column:
+                name: mnemonic
+                value: OAKLEIGH
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3101
+            - column:
+                name: postcode_end
+                value: 3104
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3124
+            - column:
+                name: postcode_end
+                value: 3124
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3126
+            - column:
+                name: postcode_end
+                value: 3126
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3166
+            - column:
+                name: postcode_end
+                value: 3169
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3171
+            - column:
+                name: postcode_end
+                value: 3171
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3174
+            - column:
+                name: postcode_end
+                value: 3174
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3800
+            - column:
+                name: postcode_end
+                value: 3800
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: HAWTHORN
+            - column:
+                name: mnemonic
+                value: HAWTHORN
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HAWTHORN'
+            - column:
+                name: postcode_start
+                value: 3122
+            - column:
+                name: postcode_end
+                value: 3123
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: KNOXFIELD
+            - column:
+                name: mnemonic
+                value: KNOXFIELD
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3113
+            - column:
+                name: postcode_end
+                value: 3115
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3127
+            - column:
+                name: postcode_end
+                value: 3135
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3158
+            - column:
+                name: postcode_end
+                value: 3160
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3176
+            - column:
+                name: postcode_end
+                value: 3176
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3178
+            - column:
+                name: postcode_end
+                value: 3180
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3788
+            - column:
+                name: postcode_end
+                value: 3789
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+            - column:
+                name: postcode_start
+                value: 3791
+            - column:
+                name: postcode_end
+                value: 3793
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: MOORABBIN
+            - column:
+                name: mnemonic
+                value: MOORABBIN
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3161
+            - column:
+                name: postcode_end
+                value: 3162
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3165
+            - column:
+                name: postcode_end
+                value: 3165
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3172
+            - column:
+                name: postcode_end
+                value: 3173
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3186
+            - column:
+                name: postcode_end
+                value: 3193
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3194
+            - column:
+                name: postcode_end
+                value: 3196
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+            - column:
+                name: postcode_start
+                value: 3202
+            - column:
+                name: postcode_end
+                value: 3204
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: SEAFORD
+            - column:
+                name: mnemonic
+                value: SEAFORD
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SEAFORD'
+            - column:
+                name: postcode_start
+                value: 3197
+            - column:
+                name: postcode_end
+                value: 3201
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: NARRE WARREN
+            - column:
+                name: mnemonic
+                value: NARRE WARREN
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'NARRE WARREN'
+            - column:
+                name: postcode_start
+                value: 3803
+            - column:
+                name: postcode_end
+                value: 3809
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: ST KILDA
+            - column:
+                name: mnemonic
+                value: ST KILDA
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+            - column:
+                name: postcode_start
+                value: 3164
+            - column:
+                name: postcode_end
+                value: 3164
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+            - column:
+                name: postcode_start
+                value: 3175
+            - column:
+                name: postcode_end
+                value: 3175
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+            - column:
+                name: postcode_start
+                value: 3177
+            - column:
+                name: postcode_end
+                value: 3177
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+            - column:
+                name: postcode_start
+                value: 3182
+            - column:
+                name: postcode_end
+                value: 3185
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+            - column:
+                name: postcode_start
+                value: 3802
+            - column:
+                name: postcode_end
+                value: 3802
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: CRANBOURNE
+            - column:
+                name: mnemonic
+                value: CRANBOURNE
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+            - column:
+                name: postcode_start
+                value: 3910
+            - column:
+                name: postcode_end
+                value: 3910
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+            - column:
+                name: postcode_start
+                value: 3980
+            - column:
+                name: postcode_end
+                value: 3980
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+            - column:
+                name: postcode_start
+                value: 3975
+            - column:
+                name: postcode_end
+                value: 3978
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: MORNINGTON
+            - column:
+                name: mnemonic
+                value: MORNINGTON
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+            - column:
+                name: postcode_start
+                value: 3911
+            - column:
+                name: postcode_end
+                value: 3911
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+            - column:
+                name: postcode_start
+                value: 3928
+            - column:
+                name: postcode_end
+                value: 3928
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+            - column:
+                name: postcode_start
+                value: 3930
+            - column:
+                name: postcode_end
+                value: 3934
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+            - column:
+                name: postcode_start
+                value: 3936
+            - column:
+                name: postcode_end
+                value: 3940
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: ROSEBUD
+            - column:
+                name: mnemonic
+                value: ROSEBUD
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ROSEBUD'
+            - column:
+                name: postcode_start
+                value: 3941
+            - column:
+                name: postcode_end
+                value: 3944
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: MT WAVERLEY
+            - column:
+                name: mnemonic
+                value: MT WAVERLEY
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+            - column:
+                name: postcode_start
+                value: 3125
+            - column:
+                name: postcode_end
+                value: 3125
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+            - column:
+                name: postcode_start
+                value: 3149
+            - column:
+                name: postcode_end
+                value: 3151
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+            - column:
+                name: postcode_start
+                value: 3170
+            - column:
+                name: postcode_end
+                value: 3170
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: BAYSWATER RESORTS
+            - column:
+                name: mnemonic
+                value: BAYSWATER RESORTS
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3139
+            - column:
+                name: postcode_end
+                value: 3139
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3775
+            - column:
+                name: postcode_end
+                value: 3775
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3777
+            - column:
+                name: postcode_end
+                value: 3779
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3781
+            - column:
+                name: postcode_end
+                value: 3783
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3785
+            - column:
+                name: postcode_end
+                value: 3787
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3795
+            - column:
+                name: postcode_end
+                value: 3797
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+            - column:
+                name: postcode_start
+                value: 3799
+            - column:
+                name: postcode_end
+                value: 3799
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: HASTINGS
+            - column:
+                name: mnemonic
+                value: HASTINGS
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+            - column:
+                name: postcode_start
+                value: 3912
+            - column:
+                name: postcode_end
+                value: 3920
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+            - column:
+                name: postcode_start
+                value: 3926
+            - column:
+                name: postcode_end
+                value: 3927
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+            - column:
+                name: postcode_start
+                value: 3929
+            - column:
+                name: postcode_end
+                value: 3929
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: PAKENHAM
+            - column:
+                name: mnemonic
+                value: PAKENHAM
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM'
+            - column:
+                name: postcode_start
+                value: 3810
+            - column:
+                name: postcode_end
+                value: 3810
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM'
+            - column:
+                name: postcode_start
+                value: 3981
+            - column:
+                name: postcode_end
+                value: 3981
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: WHITTLESEA
+            - column:
+                name: mnemonic
+                value: WHITTLESEA
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+            - column:
+                name: postcode_start
+                value: 3750
+            - column:
+                name: postcode_end
+                value: 3751
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+            - column:
+                name: postcode_start
+                value: 3754
+            - column:
+                name: postcode_end
+                value: 3755
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+            - column:
+                name: postcode_start
+                value: 3757
+            - column:
+                name: postcode_end
+                value: 3763
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: SUNBURY
+            - column:
+                name: mnemonic
+                value: SUNBURY
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SUNBURY'
+            - column:
+                name: postcode_start
+                value: 3427
+            - column:
+                name: postcode_end
+                value: 3430
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: BACCHUS MARSH
+            - column:
+                name: mnemonic
+                value: BACCHUS MARSH
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BACCHUS MARSH'
+            - column:
+                name: postcode_start
+                value: 3340
+            - column:
+                name: postcode_end
+                value: 3341
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: GISBORNE
+            - column:
+                name: mnemonic
+                value: GISBORNE
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GISBORNE'
+            - column:
+                name: postcode_start
+                value: 3431
+            - column:
+                name: postcode_end
+                value: 3431
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GISBORNE'
+            - column:
+                name: postcode_start
+                value: 3437
+            - column:
+                name: postcode_end
+                value: 3438
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: WESTERN FWDS
+            - column:
+                name: mnemonic
+                value: WESTERN FWDS
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FWDS'
+            - column:
+                name: postcode_start
+                value: 3432
+            - column:
+                name: postcode_end
+                value: 3435
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FWDS'
+            - column:
+                name: postcode_start
+                value: 3440
+            - column:
+                name: postcode_end
+                value: 3442
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: MELTON
+            - column:
+                name: mnemonic
+                value: MELTON
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+            - column:
+                name: postcode_start
+                value: 3031
+            - column:
+                name: postcode_end
+                value: 3036
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+            - column:
+                name: postcode_start
+                value: 3039
+            - column:
+                name: postcode_end
+                value: 3045
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+            - column:
+                name: postcode_start
+                value: 3047
+            - column:
+                name: postcode_end
+                value: 3047
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+            - column:
+                name: postcode_start
+                value: 3049
+            - column:
+                name: postcode_end
+                value: 3049
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+            - column:
+                name: postcode_start
+                value: 3335
+            - column:
+                name: postcode_end
+                value: 3338
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: HOPPERS CROSSING
+            - column:
+                name: mnemonic
+                value: HOPPERS CROSSING
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING'
+            - column:
+                name: postcode_start
+                value: 3011
+            - column:
+                name: postcode_end
+                value: 3030
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING'
+            - column:
+                name: postcode_start
+                value: 3037
+            - column:
+                name: postcode_end
+                value: 3038
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: EPPING
+            - column:
+                name: mnemonic
+                value: EPPING
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3046
+            - column:
+                name: postcode_end
+                value: 3046
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3048
+            - column:
+                name: postcode_end
+                value: 3048
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3055
+            - column:
+                name: postcode_end
+                value: 3062
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3064
+            - column:
+                name: postcode_end
+                value: 3068
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3070
+            - column:
+                name: postcode_end
+                value: 3076
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3078
+            - column:
+                name: postcode_end
+                value: 3079
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3081
+            - column:
+                name: postcode_end
+                value: 3097
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3099
+            - column:
+                name: postcode_end
+                value: 3099
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3752
+            - column:
+                name: postcode_end
+                value: 3752
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+            - column:
+                name: postcode_start
+                value: 3759
+            - column:
+                name: postcode_end
+                value: 3761
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: SOMERTON FWD
+            - column:
+                name: mnemonic
+                value: SOMERTON FWD
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+            - column:
+                name: postcode_start
+                value: 3063
+            - column:
+                name: postcode_end
+                value: 3063
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+            - column:
+                name: postcode_start
+                value: 3753
+            - column:
+                name: postcode_end
+                value: 3753
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+            - column:
+                name: postcode_start
+                value: 3756
+            - column:
+                name: postcode_end
+                value: 3758
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+            - column:
+                name: postcode_start
+                value: 3762
+            - column:
+                name: postcode_end
+                value: 3762
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+            - column:
+                name: postcode_start
+                value: 3764
+            - column:
+                name: postcode_end
+                value: 3764
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: GEELONG
+            - column:
+                name: mnemonic
+                value: GEELONG
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+            - column:
+                name: postcode_start
+                value: 3211
+            - column:
+                name: postcode_end
+                value: 3289
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+            - column:
+                name: postcode_start
+                value: 3292
+            - column:
+                name: postcode_end
+                value: 3316
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+            - column:
+                name: postcode_start
+                value: 3320
+            - column:
+                name: postcode_end
+                value: 3334
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: BALLARAT
+            - column:
+                name: mnemonic
+                value: BALLARAT
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+            - column:
+                name: postcode_start
+                value: 3290
+            - column:
+                name: postcode_end
+                value: 3291
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+            - column:
+                name: postcode_start
+                value: 3317
+            - column:
+                name: postcode_end
+                value: 3319
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+            - column:
+                name: postcode_start
+                value: 3342
+            - column:
+                name: postcode_end
+                value: 3424
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+            - column:
+                name: postcode_start
+                value: 3455
+            - column:
+                name: postcode_end
+                value: 3461
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+            - column:
+                name: postcode_start
+                value: 3464
+            - column:
+                name: postcode_end
+                value: 3487
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: BENDIGO
+            - column:
+                name: mnemonic
+                value: BENDIGO
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 2648
+            - column:
+                name: postcode_end
+                value: 2648
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 2715
+            - column:
+                name: postcode_end
+                value: 2715
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 2717
+            - column:
+                name: postcode_end
+                value: 2719
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 2731
+            - column:
+                name: postcode_end
+                value: 2739
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 3444
+            - column:
+                name: postcode_end
+                value: 3454
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 3462
+            - column:
+                name: postcode_end
+                value: 3463
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+            - column:
+                name: postcode_start
+                value: 3488
+            - column:
+                name: postcode_end
+                value: 3599
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: SEYMOUR
+            - column:
+                name: mnemonic
+                value: SEYMOUR
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SEYMOUR'
+            - column:
+                name: postcode_start
+                value: 3600
+            - column:
+                name: postcode_end
+                value: 3749
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+            - column:
+                name: description
+                value: GIPPSLAND
+            - column:
+                name: mnemonic
+                value: GIPPSLAND
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+            - column:
+                name: postcode_start
+                value: 3812
+            - column:
+                name: postcode_end
+                value: 3909
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+            - column:
+                name: postcode_start
+                value: 3921
+            - column:
+                name: postcode_end
+                value: 3925
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+            - column:
+                name: postcode_start
+                value: 3945
+            - column:
+                name: postcode_end
+                value: 3971
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+            - column:
+                name: postcode_start
+                value: 3979
+            - column:
+                name: postcode_end
+                value: 3979
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+            - column:
+                name: postcode_start
+                value: 3984
+            - column:
+                name: postcode_end
+                value: 3999
