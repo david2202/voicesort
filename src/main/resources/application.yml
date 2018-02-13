@@ -28,7 +28,7 @@ voicesort:
     deviceSecurityEnabled: true
     maxResults: 8
     ame-api:
-        url: http://ame-api-sdev.ap-southeast-2.elasticbeanstalk.com/api/address
+        url: http://ame-api-ptest.ap-southeast-2.elasticbeanstalk.com/api/v1/address
     translations:
         alpha,alfa,alford,hey: a
         bravo,be: b
@@ -46,10 +46,10 @@ voicesort:
         november: n
         oscar,moscow: o
         papa,piper,harper: p
+        tango: t
         quebec: q
         romeo: r
         sierra,ciara: s
-        tango: t
         uniform,you: u
         victor,victa: v
         whiskey,whisky: w

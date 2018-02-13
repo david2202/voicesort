@@ -1,9 +1,10 @@
 package au.com.auspost.voicesort.web.controller.rest;
 
+import au.com.auspost.ame.web.value.AddressMatchRequestVO;
+import au.com.auspost.ame.web.value.AddressMatchResponseVO;
+import au.com.auspost.ame.web.value.AddressType;
 import au.com.auspost.voicesort.service.AddressService;
 import au.com.auspost.voicesort.service.SpeechParser;
-import au.com.auspost.voicesort.web.value.ame.AddressMatchRequestVO;
-import au.com.auspost.voicesort.web.value.ame.AddressMatchResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class SpeechRestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public AddressMatchResponseVO list(@RequestParam(name ="text", required = true) String text,
-                                @RequestParam(name ="postCode", required = true) String postCode) {
+                                       @RequestParam(name ="postCode", required = true) String postCode) {
         String search = speechParser.parse(text);
 
         AddressMatchResponseVO response = addressService.addressLookup(buildRequest(search, postCode, speechParser.isPhonetic(text)));
@@ -41,7 +42,7 @@ public class SpeechRestController {
                 .putMaxResults(maxResults)
                 .putPredictive(isPhonetic)
                 .putFilters(new AddressMatchRequestVO.Filters()
-                        .putAddressType(AddressMatchRequestVO.Filters.AddressType.STREET)
+                        .putAddressType(AddressType.THOROUGHFARE)
                 )
                 .putDetail(new AddressMatchRequestVO.Detail()
                         .putUnstructured(true)

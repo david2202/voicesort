@@ -1,7 +1,7 @@
 package au.com.auspost.voicesort.service;
 
-import au.com.auspost.voicesort.web.value.ame.AddressMatchRequestVO;
-import au.com.auspost.voicesort.web.value.ame.AddressMatchResponseVO;
+import au.com.auspost.ame.web.value.AddressMatchRequestVO;
+import au.com.auspost.ame.web.value.AddressMatchResponseVO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
