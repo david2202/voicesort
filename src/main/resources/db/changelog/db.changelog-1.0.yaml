@@ -225,7 +225,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: uuid
-                value: 3b337df1-3032-484f-b62e-9827603dac85
+                value: f90e02f7-e0b3-4e81-ad3e-7769d6d7aad8
             - column:
                 name: version
                 value: 0
@@ -256,12 +256,64 @@ databaseChangeLog:
             - column:
                 name: last_updated
                 value: "2017-10-10T12:14:00"
+        - insert:
+            tableName: device
+            columns:
+            - column:
+                name: uuid
+                value: 0730457b-1eb0-47f2-ae51-9cf052acf4e6
+            - column:
+                name: version
+                value: 0
+            - column:
+                name: description
+                value: 'Divya Mayreddy (DWS) Android developer'
+            - column:
+                name: created
+                value: "2018-05-08T04:29:00"
+            - column:
+                name: last_updated
+                value: "2018-05-08T04:29:00"
 
     - changeSet:
         id: 1.0-4
         author: howed
         comment: Create sort plan tables
         changes:
+        - createTable:
+            tableName: facility
+            columns:
+            - column:
+                name: id
+                type: java.sql.Types.INTEGER
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: version
+                type: java.sql.Types.BIGINT
+                defaultValue: 0
+                constraints:
+                  nullable: false
+            - column:
+                name: name
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: false
+            - column:
+                name: created
+                type: java.sql.Types.TIMESTAMP
+                defaultValue: ${now}
+                constraints:
+                  nullable: false
+            - column:
+                name: last_updated
+                type: java.sql.Types.TIMESTAMP
+                defaultValue: ${now}
+                constraints:
+                  nullable: false
+
         - createTable:
             tableName: sort_plan
             columns:
@@ -279,8 +331,20 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
+                name: facility_id
+                type: java.sql.Types.INTEGER
+                constraints:
+                    foreignKeyName: fk_sort_plan_facility
+                    references: facility(id)
+                    nullable: false
+            - column:
                 name: description
                 type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: false
+            - column:
+                name: print_ind
+                type: java.sql.Types.BOOLEAN
                 constraints:
                   nullable: false
             - column:
@@ -325,10 +389,20 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: mnemonic
+                name: display_outcome
                 type: java.sql.Types.VARCHAR(40)
                 constraints:
                   nullable: false
+            - column:
+                name: spoken_outcome
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: false
+            - column:
+                name: printed_outcome
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: true
             - column:
                 name: created
                 type: java.sql.Types.TIMESTAMP
@@ -389,12 +463,30 @@ databaseChangeLog:
                   nullable: false
 
         - insert:
+            tableName: facility
+            columns:
+            - column:
+                name: name
+                value: Melbourne Parcel Facility
+        - insert:
+            tableName: facility
+            columns:
+            - column:
+                name: name
+                value: Dandenong Letter Centre
+
+        - insert:
             tableName: sort_plan
             columns:
             - column:
                 name: description
                 value: Dandenong Amazon Victoria
-
+            - column:
+                name: facility_id
+                valueComputed: SELECT id FROM facility WHERE name = 'Dandenong Letter Centre'
+            - column:
+                name: print_ind
+                value: false
         - insert:
             tableName: sort_plan_break
             columns:
@@ -405,7 +497,10 @@ databaseChangeLog:
                 name: description
                 value: Albury
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: WHITE
+            - column:
+                name: spoken_outcome
                 value: WHITE
 
         - insert:
@@ -476,7 +571,10 @@ databaseChangeLog:
                 name: description
                 value: Melbourne
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: RED
+            - column:
+                name: spoken_outcome
                 value: RED
 
         - insert:
@@ -550,7 +648,10 @@ databaseChangeLog:
                 name: description
                 value: Geelong
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: GREEN
+            - column:
+                name: spoken_outcome
                 value: GREEN
 
         - insert:
@@ -645,7 +746,10 @@ databaseChangeLog:
                 name: description
                 value: Ballarat
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: ORANGE
+            - column:
+                name: spoken_outcome
                 value: ORANGE
 
         - insert:
@@ -773,7 +877,10 @@ databaseChangeLog:
                 name: description
                 value: Bendigo
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: LILAC
+            - column:
+                name: spoken_outcome
                 value: LILAC
 
         - insert:
@@ -865,7 +972,10 @@ databaseChangeLog:
                 name: description
                 value: Seymour
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: PINK
+            - column:
+                name: spoken_outcome
                 value: PINK
 
         - insert:
@@ -891,7 +1001,10 @@ databaseChangeLog:
                 name: description
                 value: Morwell
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: GREY
+            - column:
+                name: spoken_outcome
                 value: GREY
 
         - insert:
@@ -1010,8 +1123,12 @@ databaseChangeLog:
                 name: description
                 value: Northern & Western
             - column:
-                name: mnemonic
+                name: display_outcome
                 value: BROWN
+            - column:
+                name: spoken_outcome
+                value: BROWN
+
         - insert:
             tableName: sort_plan_break_range
             columns:
@@ -1071,7 +1188,10 @@ databaseChangeLog:
                 name: description
                 value: SOY
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: DARK GREEN
+            - column:
+                name: spoken_outcome
                 value: DARK GREEN
 
         - insert:
@@ -1202,7 +1322,10 @@ databaseChangeLog:
                 name: description
                 value: SOY Forward
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: YELLOW
+            - column:
+                name: spoken_outcome
                 value: YELLOW
 
         - insert:
@@ -1287,6 +1410,12 @@ databaseChangeLog:
             - column:
                 name: description
                 value: Melbourne Parcel Facility
+            - column:
+                name: facility_id
+                valueComputed: SELECT id FROM facility WHERE name = 'Melbourne Parcel Facility'
+            - column:
+                name: print_ind
+                value: false
 
         - insert:
             tableName: sort_plan_break
@@ -1298,7 +1427,10 @@ databaseChangeLog:
                 name: description
                 value: PT MELBOURNE
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: PT MELBOURNE
+            - column:
+                name: spoken_outcome
                 value: PT MELBOURNE
 
         - insert:
@@ -1384,7 +1516,10 @@ databaseChangeLog:
                 name: description
                 value: RICHMOND
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: RICHMOND
+            - column:
+                name: spoken_outcome
                 value: RICHMOND
 
         - insert:
@@ -1434,7 +1569,10 @@ databaseChangeLog:
                 name: description
                 value: TEMPLESTOWE
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: TEMPLESTOWE
+            - column:
+                name: spoken_outcome
                 value: TEMPLESTOWE
 
         - insert:
@@ -1470,35 +1608,12 @@ databaseChangeLog:
                 valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
             - column:
                 name: description
-                value: DEEPDENE
-            - column:
-                name: mnemonic
-                value: DEEPDENE
-
-        - insert:
-            tableName: sort_plan_break_range
-            columns:
-            - column:
-                name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'DEEPDENE'
-            - column:
-                name: postcode_start
-                value: 3101
-            - column:
-                name: postcode_end
-                value: 3104
-
-        - insert:
-            tableName: sort_plan_break
-            columns:
-            - column:
-                name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
-            - column:
-                name: description
                 value: MOOROOLBARK
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: MOOROOLBARK
+            - column:
+                name: spoken_outcome
                 value: MOOROOLBARK
 
         - insert:
@@ -1572,7 +1687,10 @@ databaseChangeLog:
                 name: description
                 value: OAKLEIGH
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: OAKLEIGH
+            - column:
+                name: spoken_outcome
                 value: OAKLEIGH
 
         - insert:
@@ -1611,6 +1729,30 @@ databaseChangeLog:
             - column:
                 name: postcode_end
                 value: 3126
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3142
+            - column:
+                name: postcode_end
+                value: 3148
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3163
+            - column:
+                name: postcode_end
+                value: 3163
         - insert:
             tableName: sort_plan_break_range
             columns:
@@ -1661,6 +1803,19 @@ databaseChangeLog:
                 value: 3800
 
         - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+            - column:
+                name: postcode_start
+                value: 3101
+            - column:
+                name: postcode_end
+                value: 3104
+
+        - insert:
             tableName: sort_plan_break
             columns:
             - column:
@@ -1670,7 +1825,10 @@ databaseChangeLog:
                 name: description
                 value: HAWTHORN
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: HAWTHORN
+            - column:
+                name: spoken_outcome
                 value: HAWTHORN
 
         - insert:
@@ -1696,7 +1854,10 @@ databaseChangeLog:
                 name: description
                 value: KNOXFIELD
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: KNOXFIELD
+            - column:
+                name: spoken_outcome
                 value: KNOXFIELD
 
         - insert:
@@ -1794,7 +1955,10 @@ databaseChangeLog:
                 name: description
                 value: MOORABBIN
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: MOORABBIN
+            - column:
+                name: spoken_outcome
                 value: MOORABBIN
 
         - insert:
@@ -1880,7 +2044,10 @@ databaseChangeLog:
                 name: description
                 value: SEAFORD
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: SEAFORD
+            - column:
+                name: spoken_outcome
                 value: SEAFORD
 
         - insert:
@@ -1906,7 +2073,10 @@ databaseChangeLog:
                 name: description
                 value: NARRE WARREN
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: NARRE WARREN
+            - column:
+                name: spoken_outcome
                 value: NARRE WARREN
 
         - insert:
@@ -1932,7 +2102,10 @@ databaseChangeLog:
                 name: description
                 value: ST KILDA
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: ST KILDA
+            - column:
+                name: spoken_outcome
                 value: ST KILDA
 
         - insert:
@@ -2006,7 +2179,10 @@ databaseChangeLog:
                 name: description
                 value: CRANBOURNE
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: CRANBOURNE
+            - column:
+                name: spoken_outcome
                 value: CRANBOURNE
 
         - insert:
@@ -2056,7 +2232,10 @@ databaseChangeLog:
                 name: description
                 value: MORNINGTON
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: MORNINGTON
+            - column:
+                name: spoken_outcome
                 value: MORNINGTON
 
         - insert:
@@ -2118,7 +2297,10 @@ databaseChangeLog:
                 name: description
                 value: ROSEBUD
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: ROSEBUD
+            - column:
+                name: spoken_outcome
                 value: ROSEBUD
 
         - insert:
@@ -2144,7 +2326,10 @@ databaseChangeLog:
                 name: description
                 value: MT WAVERLEY
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: MT WAVERLEY
+            - column:
+                name: spoken_outcome
                 value: MT WAVERLEY
 
         - insert:
@@ -2192,17 +2377,20 @@ databaseChangeLog:
                 valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
             - column:
                 name: description
-                value: BAYSWATER RESORTS
+                value: BAYSWATER RE-SORTS
             - column:
-                name: mnemonic
-                value: BAYSWATER RESORTS
+                name: display_outcome
+                value: BAYSWATER RE-SORTS
+            - column:
+                name: spoken_outcome
+                value: BAYSWATER RE-SORTS
 
         - insert:
             tableName: sort_plan_break_range
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3139
@@ -2214,7 +2402,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3775
@@ -2226,7 +2414,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3777
@@ -2238,7 +2426,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3781
@@ -2250,7 +2438,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3785
@@ -2262,7 +2450,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3795
@@ -2274,7 +2462,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RESORTS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
             - column:
                 name: postcode_start
                 value: 3799
@@ -2292,7 +2480,10 @@ databaseChangeLog:
                 name: description
                 value: HASTINGS
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: HASTINGS
+            - column:
+                name: spoken_outcome
                 value: HASTINGS
 
         - insert:
@@ -2342,7 +2533,10 @@ databaseChangeLog:
                 name: description
                 value: PAKENHAM
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: PAKENHAM
+            - column:
+                name: spoken_outcome
                 value: PAKENHAM
 
         - insert:
@@ -2380,7 +2574,10 @@ databaseChangeLog:
                 name: description
                 value: WHITTLESEA
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: WHITTLESEA
+            - column:
+                name: spoken_outcome
                 value: WHITTLESEA
 
         - insert:
@@ -2430,7 +2627,10 @@ databaseChangeLog:
                 name: description
                 value: SUNBURY
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: SUNBURY
+            - column:
+                name: spoken_outcome
                 value: SUNBURY
 
         - insert:
@@ -2456,7 +2656,10 @@ databaseChangeLog:
                 name: description
                 value: BACCHUS MARSH
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: BACCHUS MARSH
+            - column:
+                name: spoken_outcome
                 value: BACCHUS MARSH
 
         - insert:
@@ -2482,7 +2685,10 @@ databaseChangeLog:
                 name: description
                 value: GISBORNE
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: GISBORNE
+            - column:
+                name: spoken_outcome
                 value: GISBORNE
 
         - insert:
@@ -2518,17 +2724,20 @@ databaseChangeLog:
                 valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
             - column:
                 name: description
-                value: WESTERN FWDS
+                value: WESTERN FORWARDS
             - column:
-                name: mnemonic
-                value: WESTERN FWDS
+                name: display_outcome
+                value: WESTERN FORWARDS
+            - column:
+                name: spoken_outcome
+                value: WESTERN FORWARDS
 
         - insert:
             tableName: sort_plan_break_range
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FWDS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS'
             - column:
                 name: postcode_start
                 value: 3432
@@ -2540,7 +2749,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FWDS'
+                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS'
             - column:
                 name: postcode_start
                 value: 3440
@@ -2558,7 +2767,10 @@ databaseChangeLog:
                 name: description
                 value: MELTON
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: MELTON
+            - column:
+                name: spoken_outcome
                 value: MELTON
 
         - insert:
@@ -2632,7 +2844,10 @@ databaseChangeLog:
                 name: description
                 value: HOPPERS CROSSING
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: HOPPERS CROSSING
+            - column:
+                name: spoken_outcome
                 value: HOPPERS CROSSING
 
         - insert:
@@ -2670,7 +2885,10 @@ databaseChangeLog:
                 name: description
                 value: EPPING
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: EPPING
+            - column:
+                name: spoken_outcome
                 value: EPPING
 
         - insert:
@@ -2804,7 +3022,10 @@ databaseChangeLog:
                 name: description
                 value: SOMERTON FWD
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: SOMERTON FWD
+            - column:
+                name: spoken_outcome
                 value: SOMERTON FWD
 
         - insert:
@@ -2878,7 +3099,10 @@ databaseChangeLog:
                 name: description
                 value: GEELONG
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: GEELONG
+            - column:
+                name: spoken_outcome
                 value: GEELONG
 
         - insert:
@@ -2928,7 +3152,10 @@ databaseChangeLog:
                 name: description
                 value: BALLARAT
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: BALLARAT
+            - column:
+                name: spoken_outcome
                 value: BALLARAT
 
         - insert:
@@ -3002,7 +3229,10 @@ databaseChangeLog:
                 name: description
                 value: BENDIGO
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: BENDIGO
+            - column:
+                name: spoken_outcome
                 value: BENDIGO
 
         - insert:
@@ -3100,7 +3330,10 @@ databaseChangeLog:
                 name: description
                 value: SEYMOUR
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: SEYMOUR
+            - column:
+                name: spoken_outcome
                 value: SEYMOUR
 
         - insert:
@@ -3126,7 +3359,10 @@ databaseChangeLog:
                 name: description
                 value: GIPPSLAND
             - column:
-                name: mnemonic
+                name: display_outcome
+                value: GIPPSLAND
+            - column:
+                name: spoken_outcome
                 value: GIPPSLAND
 
         - insert:

@@ -128,8 +128,8 @@
             $.get("/rest/api/sortPlan/" + sortPlanId + "/break",
                 {postCode: text},
                 function(data) {
-                    $("#result").text(data.mnemonic);
-                    speak(data.mnemonic);
+                    $("#result").text(data.displayOutcome);
+                    speak(data.spokenOutcome);
                 }
             );
         }

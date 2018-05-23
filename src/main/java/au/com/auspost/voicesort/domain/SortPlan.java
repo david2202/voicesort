@@ -1,5 +1,6 @@
 package au.com.auspost.voicesort.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,11 +22,21 @@ public class SortPlan extends BaseEntity {
     @Setter
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name="facility_id")
+    @JsonIgnore
+    @Getter @Setter
+    private Facility facility;
+
     @OneToMany(mappedBy = "sortPlan", cascade = CascadeType.ALL)
+    @OrderBy("description")
     @Getter @Setter
     private List<SortPlanBreak> sortPlanBreaks = new ArrayList<>();
 
     @Getter @Setter
     private String description;
 
+    @Getter @Setter
+    @Column(name = "print_ind")
+    private Boolean print;
 }

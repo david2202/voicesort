@@ -32,6 +32,7 @@ public class DeviceSecurityFilter implements Filter {
             HttpServletRequest httpRequest = (HttpServletRequest)servletRequest;
             String url = httpRequest.getRequestURL().toString();
             if (url.endsWith("/register")
+                    ||url.endsWith("/rest/api/facility")
                     || url.endsWith("/healthCheck")
                     || url.contains("/css")
                     || url.contains("/scripts")

@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @RestController
 @RequestMapping(path = "/rest/api/sortPlan")
 public class SortPlanRestController {
@@ -19,12 +23,12 @@ public class SortPlanRestController {
     @Autowired
     private SortPlanService sortPlanService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = GET)
     public SortPlan get(@PathVariable("id") int id) {
         return sortPlanService.load(id);
     }
 
-    @RequestMapping(value = "/{id}/break", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/break", method = GET)
     public SortPlanBreak findBreak(@PathVariable("id") int sortPlanId,
                                    @RequestParam("postCode") Integer postCode) {
         return sortPlanService.findBreak(sortPlanId, postCode);

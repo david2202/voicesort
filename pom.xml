@@ -98,7 +98,7 @@
         <dependency>
             <groupId>au.com.auspost.postal.ame</groupId>
             <artifactId>ame-api-client</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-1</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

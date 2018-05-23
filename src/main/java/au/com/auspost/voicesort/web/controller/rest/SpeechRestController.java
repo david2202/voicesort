@@ -45,7 +45,7 @@ public class SpeechRestController {
                         .putAddressType(AddressType.THOROUGHFARE)
                 )
                 .putDetail(new AddressMatchRequestVO.Detail()
-                        .putUnstructured(true)
+                        .putUpu(true)
                         .putDelivery(true)
                         .putGeo(true)
                 )

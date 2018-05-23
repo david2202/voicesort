@@ -29,6 +29,7 @@ public class SortPlanBreak {
     private SortPlan sortPlan;
 
     @OneToMany(mappedBy = "sortPlanBreak", cascade = CascadeType.ALL)
+    @OrderBy("postcodeStart")
     @Getter @Setter
     private List<SortPlanBreakRange> sortPlanBreakRanges = new ArrayList<>();
 
@@ -36,6 +37,11 @@ public class SortPlanBreak {
     private String description;
 
     @Getter @Setter
-    private String mnemonic;
+    private String displayOutcome;
 
+    @Getter @Setter
+    private String spokenOutcome;
+
+    @Getter @Setter
+    private String printedOutcome;
 }
