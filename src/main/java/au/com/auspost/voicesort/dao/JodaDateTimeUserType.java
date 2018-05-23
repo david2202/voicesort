@@ -2,6 +2,7 @@ package au.com.auspost.voicesort.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.type.DbTimestampType;
 import org.hibernate.usertype.UserType;
 import org.joda.time.DateTime;
@@ -38,7 +39,7 @@ public class JodaDateTimeUserType implements UserType {
     }
 
     @Override
-    public Object nullSafeGet(ResultSet resultSet, String[] names, SessionImplementor sessionImplementor, Object o) throws HibernateException, SQLException {
+    public Object nullSafeGet(ResultSet resultSet, String[] names, SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException, SQLException {
         String columnName = names[0];
         Date columnValue = resultSet.getTimestamp(columnName);
         return columnValue == null ? null :
@@ -46,7 +47,7 @@ public class JodaDateTimeUserType implements UserType {
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement ps, Object value, int index, SessionImplementor sessionImplementor) throws HibernateException, SQLException {
+    public void nullSafeSet(PreparedStatement ps, Object value, int index, SharedSessionContractImplementor sharedSessionContractImplementor) throws HibernateException, SQLException {
         if ( value == null ) {
             ps.setNull( index, Types.TIMESTAMP);
         } else {
@@ -54,6 +55,7 @@ public class JodaDateTimeUserType implements UserType {
             ps.setTimestamp( index, new Timestamp(dt.getMillis()));
         }
     }
+
 
     @Override
     public Object deepCopy(Object o) throws HibernateException {

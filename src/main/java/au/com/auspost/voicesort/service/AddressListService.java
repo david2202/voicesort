@@ -50,7 +50,7 @@ public class AddressListService {
 
     @Transactional(propagation= Propagation.REQUIRED)
     public void deleteItem(Integer addressListItemId) {
-        addressListItemDao.delete(addressListItemId);
+        addressListItemDao.deleteById(addressListItemId);
     }
 }
 

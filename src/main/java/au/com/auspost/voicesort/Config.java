@@ -5,6 +5,7 @@ import au.com.auspost.voicesort.service.DeviceService;
 import au.com.auspost.voicesort.web.filter.DeviceSecurityFilter;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -42,5 +43,10 @@ public class Config {
         filterRegBean.setName("deviceSecurityFilter");
         filterRegBean.setAsyncSupported(Boolean.TRUE);
         return filterRegBean;
+    }
+
+    @Bean
+    LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 }
