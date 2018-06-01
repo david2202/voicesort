@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Facility extends BaseEntity {
@@ -17,7 +19,7 @@ public class Facility extends BaseEntity {
     @Setter
     private Integer id;
 
-    @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL, fetch = LAZY)
     @OrderBy("description")
     @Getter @Setter
     private List<SortPlan> sortPlans = new ArrayList<>();

@@ -24,7 +24,7 @@ public class FacilityController {
     public List<FacilityVO> list() {
         List<Facility> facilities = facilityService.list();
         List<FacilityVO> facilityVOs = new ArrayList<>();
-        facilities.forEach(f -> facilityVOs.add(new FacilityVO(f)));
+        facilities.forEach(f -> facilityVOs.add(FacilityVO.build(f)));
         return facilityVOs;
     }
 }

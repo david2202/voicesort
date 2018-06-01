@@ -5,6 +5,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <link rel="manifest" th:href="@{/manifest.json}" href="../static/manifest.json" />
 

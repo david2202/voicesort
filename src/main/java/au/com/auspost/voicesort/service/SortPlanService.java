@@ -5,7 +5,10 @@ import au.com.auspost.voicesort.domain.SortPlan;
 import au.com.auspost.voicesort.domain.SortPlanBreak;
 import au.com.auspost.voicesort.domain.SortPlanBreakRange;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SortPlanService {
@@ -34,5 +37,13 @@ public class SortPlanService {
 
     public SortPlan load(int id) {
         return sortPlanDao.getOne(id);
+    }
+
+    public List<SortPlan> list() {
+        return sortPlanDao.findAll(new Sort(Sort.Direction.ASC, "description"));
+    }
+
+    public void save(SortPlan sortPlan) {
+        sortPlanDao.save(sortPlan);
     }
 }

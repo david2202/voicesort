@@ -1,29 +1,32 @@
 package au.com.auspost.voicesort.web.controller.rest.value;
 
 import au.com.auspost.voicesort.domain.Facility;
-import au.com.auspost.voicesort.domain.SortPlan;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter @Setter
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class FacilityVO {
     private Integer id;
 
     private String name;
 
+    @JsonInclude(NON_EMPTY)
+    @Singular
     private List<SortPlanVO> sortPlans;
 
-    public FacilityVO(Facility facility) {
-        this.id = facility.getId();
-        this.name = facility.getName();
-        if (facility.getSortPlans() != null) {
-            sortPlans = new ArrayList<>();
-            for (SortPlan sp : facility.getSortPlans()) {
-                sortPlans.add(new SortPlanVO(sp));
-            }
-        }
+    public static FacilityVO build(Facility facility) {
+        final List<SortPlanVO> sortPlans = new ArrayList<>();
+        facility.getSortPlans().forEach(o -> sortPlans.add(SortPlanVO.build(o, true)));
+
+        return FacilityVO.builder()
+                .id(facility.getId())
+                .name(facility.getName())
+                .sortPlans(sortPlans)
+                .build();
     }
 }

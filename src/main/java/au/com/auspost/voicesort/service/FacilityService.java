@@ -17,6 +17,10 @@ public class FacilityService {
     @Autowired
     private FacilityDao facilityDao;
 
+    public Facility load(Integer id) {
+        return facilityDao.getOne(id);
+    }
+
     public List<Facility> list() {
         return facilityDao.findAll(new Sort(Sort.Direction.ASC, "name"));
     }

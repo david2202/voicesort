@@ -5,16 +5,16 @@ import au.com.auspost.voicesort.domain.SortPlanBreak;
 import au.com.auspost.voicesort.domain.SortPlanBreakRange;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
-@Getter @Setter
+@Data @Builder
 public class SortPlanBreakVO {
     private Integer id;
 
@@ -27,20 +27,20 @@ public class SortPlanBreakVO {
     @JsonInclude(NON_NULL)
     private String printedOutcome;
 
-    private List<SortPlanBreakRangeVO> sortPlanBreakRanges;
+    @JsonInclude(NON_EMPTY)
+    @Singular private List<SortPlanBreakRangeVO> sortPlanBreakRanges;
 
-    public SortPlanBreakVO(SortPlanBreak sortPlanBreak) {
-        this.id = sortPlanBreak.getId();
-        this.description = sortPlanBreak.getDescription();
-        this.displayOutcome = sortPlanBreak.getDisplayOutcome();
-        this.spokenOutcome = sortPlanBreak.getSpokenOutcome();
-        this.printedOutcome = sortPlanBreak.getPrintedOutcome();
+    public static SortPlanBreakVO build(SortPlanBreak sortPlanBreak) {
+        final List<SortPlanBreakRangeVO> sortPlanBreakRanges = new ArrayList<>();
+        sortPlanBreak.getSortPlanBreakRanges().forEach(o -> sortPlanBreakRanges.add(SortPlanBreakRangeVO.build(o)));
 
-        if (sortPlanBreak.getSortPlanBreakRanges() != null) {
-            sortPlanBreakRanges = new ArrayList<>();
-            for (SortPlanBreakRange spbr : sortPlanBreak.getSortPlanBreakRanges()) {
-                sortPlanBreakRanges.add(new SortPlanBreakRangeVO(spbr));
-            }
-        }
+        return SortPlanBreakVO.builder()
+                .id(sortPlanBreak.getId())
+                .description(sortPlanBreak.getDescription())
+                .displayOutcome(sortPlanBreak.getDisplayOutcome())
+                .spokenOutcome(sortPlanBreak.getSpokenOutcome())
+                .printedOutcome(sortPlanBreak.getPrintedOutcome())
+                .sortPlanBreakRanges(sortPlanBreakRanges)
+                .build();
     }
 }

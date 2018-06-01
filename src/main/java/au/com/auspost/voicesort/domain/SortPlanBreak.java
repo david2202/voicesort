@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
 import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_ONLY;
 
 @Entity
@@ -28,7 +29,7 @@ public class SortPlanBreak {
     @Getter @Setter
     private SortPlan sortPlan;
 
-    @OneToMany(mappedBy = "sortPlanBreak", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sortPlanBreak", cascade = CascadeType.ALL, fetch = LAZY)
     @OrderBy("postcodeStart")
     @Getter @Setter
     private List<SortPlanBreakRange> sortPlanBreakRanges = new ArrayList<>();
