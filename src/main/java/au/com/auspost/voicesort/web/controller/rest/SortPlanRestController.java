@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 
 @RestController
 @RequestMapping(path = "/rest/api/sortPlan")
@@ -61,5 +62,10 @@ public class SortPlanRestController {
 
         sortPlanService.save(sortPlan);
         return SortPlanVO.build(sortPlan, false);
+    }
+
+    @RequestMapping(value = "/{id}", method = DELETE)
+    public void delete(@PathVariable("id") int id) {
+        sortPlanService.delete(id);
     }
 }

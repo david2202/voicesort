@@ -46,4 +46,8 @@ public class SortPlanService {
     public void save(SortPlan sortPlan) {
         sortPlanDao.save(sortPlan);
     }
+
+    public void delete(Integer id) {
+        sortPlanDao.deleteById(id);
+    }
 }

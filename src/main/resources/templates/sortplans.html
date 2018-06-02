@@ -6,20 +6,23 @@
 <!-- API Key AIzaSyARB7odEMxJYFxgOx5-eBjmx0iF6CZ8zdk -->
 <body>
 <div layout:fragment="content">
+    <h2>Sort Plans</h2>
     <div class="row">
-        <div class="table-responsive">
-            <table id="grid-basic" class="table table-condensed table-hover table-striped">
-                <thead>
-                <tr>
-                    <th data-column-id="id" data-type="numeric" data-identifier="true" >ID</th>
-                    <th data-column-id="description">Description</th>
-                    <th data-column-id="print" data-formatter="checkbox">Print</th>
-                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table id="grid-basic" class="table table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th data-column-id="facilityName">Facility</th>
+                        <th data-column-id="description">Description</th>
+                        <th data-column-id="print" data-type="boolean" data-formatter="checkbox" data-searchable="false">Print</th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false" data-searchable="false">Commands</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -64,7 +67,30 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="editSortPlanSave" class="btn btn-primary">Save</button>
-                    <button type="button" id="editSortPlanCancel" class="btn btn-default">Cancel</button>
+                    <button type="button" id="editSortPlanCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteSortPlan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sort Plan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="deleteSortPlanBody" class="modal-body centered-text">
+                    <div class="container-fluid">
+                        <input id="deleteSortPlanId" type="hidden" />
+                        Delete sort plan <span id="deleteSortPlanDescription">description</span>?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="deleteSortPlanConfirm" class="btn btn-primary">Confirm</button>
+                    <button type="button" id="deleteSortPlanCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -95,25 +121,23 @@
                 <!--/* Executes after data is loaded and rendered */-->
                 grid.find(".command-edit").on("click", function(e) {
                     var id = $(this).data("row-id");
-                    $.ajax({
-                        type : "GET",
-                        url : [[@{/rest/api/sortPlan/}]] + id,
-                        success : function(response) {
-                            clearForm();
-                            $("#id").val(response.id);
-                            $("#description").val(response.description);
-                            if (response.print) {
-                                $('#print').prop('checked', true);
-                            }
-                            $("#facility").val(response.facility.id);
-                            $("#editSortPlan").modal('show');
-                        },
-                        error : function(xhr, textStatus, errorThrown) {
-                            alert("An unexpected error has occurred " + errorThrown);
+                    retrieveSortPlan(id, function(response) {
+                        clearForm();
+                        $("#id").val(response.id);
+                        $("#description").val(response.description);
+                        if (response.print) {
+                            $('#print').prop('checked', true);
                         }
+                        $("#facility").val(response.facility.id);
+                        $("#editSortPlan").modal('show');
                     });
                 }).end().find(".command-delete").on("click", function(e) {
-                    alert("You pressed delete on row: " + $(this).data("row-id"));
+                    var id = $(this).data("row-id");
+                    retrieveSortPlan(id, function(response) {
+                        $("#deleteSortPlanId").val(id);
+                        $("#deleteSortPlanDescription").text(response.description);
+                        $("#deleteSortPlan").modal('show');
+                    });
                 });
             });
 
@@ -163,10 +187,59 @@
             });
         });
 
+        $("#deleteSortPlanConfirm").click(function() {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var id = $("#deleteSortPlanId").val();
+            $.ajax({
+                type : "DELETE",
+                url : [[@{/rest/api/sortPlan/}]] + id,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    [header]: token
+                },
+                success : function(response) {
+                    listSortPlans(function(response) {
+                        $("#grid-basic").bootgrid("clear").bootgrid("append", response);
+                    });
+                    $("#deleteSortPlan").modal('hide');
+                },
+                error : function(xhr, textStatus, errorThrown) {
+                    alert("An unexpected error has occurred: " + errorThrown);
+                }
+            });
+        });
+
         function listSortPlans(callback) {
             $.ajax({
                 type : "GET",
                 url : /*[[@{/rest/api/sortPlan/}]]*/'/rest/api/sortPlan/',
+                success : function(response) {
+                    <!--/* Need to flatten the data for bootgrid */-->
+                    var rows = [];
+                    for (i = 0; i < response.length; i++) {
+                        rows.push({
+                            id: response[i].id,
+                            description: response[i].description,
+                            facilityId: response[i].facility.id,
+                            facilityName: response[i].facility.name,
+                            print: response[i].print
+                        });
+                    }
+                    callback(rows);
+                },
+                error : function(xhr, textStatus, errorThrown) {
+                    alert("An unexpected error has occurred " + errorThrown);
+                }
+            });
+        }
+
+        function retrieveSortPlan(id, callback) {
+            $.ajax({
+                type : "GET",
+                url : [[@{/rest/api/sortPlan/}]] + id,
                 success : function(response) {
                     callback(response);
                 },
