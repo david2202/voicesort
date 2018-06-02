@@ -1,12 +1,20 @@
 package au.com.auspost.voicesort.web.controller;
 
+import au.com.auspost.voicesort.domain.SortPlan;
+import au.com.auspost.voicesort.domain.SortPlanBreak;
 import au.com.auspost.voicesort.service.FacilityService;
 import au.com.auspost.voicesort.service.SortPlanService;
+import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakVO;
+import au.com.auspost.voicesort.web.controller.rest.value.SortPlanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class SortPlanController {
@@ -25,6 +33,14 @@ public class SortPlanController {
     public ModelAndView maintain() {
         ModelAndView mav = new ModelAndView("sortplans");
         mav.addObject("facilities", facilityService.list());
+        return mav;
+    }
+
+    @RequestMapping(path = "/sortplan/{id}/sortPlanBreaks", method = RequestMethod.GET)
+    public ModelAndView sortPlanBreaks(@PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView("sortplanbreaks");
+        SortPlan sortPlan = sortPlanService.load(id);
+        mav.addObject("sortPlan", sortPlan);
         return mav;
     }
 }

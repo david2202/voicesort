@@ -5,6 +5,7 @@ import au.com.auspost.voicesort.domain.SortPlan;
 import au.com.auspost.voicesort.domain.SortPlanBreak;
 import au.com.auspost.voicesort.service.FacilityService;
 import au.com.auspost.voicesort.service.SortPlanService;
+import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakVO;
 import au.com.auspost.voicesort.web.controller.rest.value.SortPlanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -67,5 +68,27 @@ public class SortPlanRestController {
     @RequestMapping(value = "/{id}", method = DELETE)
     public void delete(@PathVariable("id") int id) {
         sortPlanService.delete(id);
+    }
+
+    @RequestMapping(path = "/{id}/sortPlanBreak", method = POST)
+    public SortPlanBreakVO save(@PathVariable("id") Integer id,
+                                @RequestBody SortPlanBreakVO sortPlanBreakVO,
+                                HttpServletResponse response) {
+        SortPlan sortPlan = sortPlanService.load(id);
+        if (sortPlan == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
+        }
+        SortPlanBreak sortPlanBreak = sortPlanBreakVO.getId() == null ? new SortPlanBreak() : sortPlanService.loadBreak(sortPlanBreakVO.getId());
+
+        sortPlanBreak.setId(sortPlanBreakVO.getId());
+        sortPlanBreak.setSortPlan(sortPlan);
+        sortPlanBreak.setDescription(sortPlanBreakVO.getDescription());
+        sortPlanBreak.setDisplayOutcome(sortPlanBreakVO.getDisplayOutcome());
+        sortPlanBreak.setSpokenOutcome(sortPlanBreakVO.getSpokenOutcome());
+        sortPlanBreak.setPrintedOutcome(sortPlanBreakVO.getPrintedOutcome());
+
+        sortPlanService.saveBreak(sortPlanBreak);
+        return SortPlanBreakVO.build(sortPlanBreak);
     }
 }
