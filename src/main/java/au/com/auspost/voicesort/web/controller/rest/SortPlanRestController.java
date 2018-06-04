@@ -3,8 +3,10 @@ package au.com.auspost.voicesort.web.controller.rest;
 import au.com.auspost.voicesort.domain.Facility;
 import au.com.auspost.voicesort.domain.SortPlan;
 import au.com.auspost.voicesort.domain.SortPlanBreak;
+import au.com.auspost.voicesort.domain.SortPlanBreakRange;
 import au.com.auspost.voicesort.service.FacilityService;
 import au.com.auspost.voicesort.service.SortPlanService;
+import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakRangeVO;
 import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakVO;
 import au.com.auspost.voicesort.web.controller.rest.value.SortPlanVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 
 @RestController
-@RequestMapping(path = "/rest/api/sortPlan")
+@RequestMapping(path = "/rest/api")
 public class SortPlanRestController {
 
     @Autowired
@@ -28,18 +30,18 @@ public class SortPlanRestController {
     @Autowired
     private FacilityService facilityService;
 
-    @RequestMapping(value = "/{id}", method = GET)
+    @RequestMapping(value = "/sortPlan/{id}", method = GET)
     public SortPlanVO get(@PathVariable("id") int id) {
         return SortPlanVO.build(sortPlanService.load(id), true);
     }
 
-    @RequestMapping(value = "/{id}/break", method = GET)
+    @RequestMapping(value = "/sortPlan/{id}/break", method = GET)
     public SortPlanBreak findBreak(@PathVariable("id") int sortPlanId,
                                    @RequestParam("postCode") Integer postCode) {
         return sortPlanService.findBreak(sortPlanId, postCode);
     }
 
-    @RequestMapping(value = "/", method = GET)
+    @RequestMapping(value = "/sortPlans", method = GET)
     public List<SortPlanVO> list() {
         List<SortPlanVO> sortPlans = new ArrayList<>();
         sortPlanService.list()
@@ -47,7 +49,7 @@ public class SortPlanRestController {
         return sortPlans;
     }
 
-    @RequestMapping(value = "/", method = POST)
+    @RequestMapping(value = "/sortPlan", method = POST)
     public SortPlanVO save(@RequestBody SortPlanVO sortPlanVO, HttpServletResponse response) {
         Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
         if (facility == null) {
@@ -65,30 +67,9 @@ public class SortPlanRestController {
         return SortPlanVO.build(sortPlan, false);
     }
 
-    @RequestMapping(value = "/{id}", method = DELETE)
+    @RequestMapping(value = "/sortPlan/{id}", method = DELETE)
     public void delete(@PathVariable("id") int id) {
         sortPlanService.delete(id);
     }
 
-    @RequestMapping(path = "/{id}/sortPlanBreak", method = POST)
-    public SortPlanBreakVO save(@PathVariable("id") Integer id,
-                                @RequestBody SortPlanBreakVO sortPlanBreakVO,
-                                HttpServletResponse response) {
-        SortPlan sortPlan = sortPlanService.load(id);
-        if (sortPlan == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return null;
-        }
-        SortPlanBreak sortPlanBreak = sortPlanBreakVO.getId() == null ? new SortPlanBreak() : sortPlanService.loadBreak(sortPlanBreakVO.getId());
-
-        sortPlanBreak.setId(sortPlanBreakVO.getId());
-        sortPlanBreak.setSortPlan(sortPlan);
-        sortPlanBreak.setDescription(sortPlanBreakVO.getDescription());
-        sortPlanBreak.setDisplayOutcome(sortPlanBreakVO.getDisplayOutcome());
-        sortPlanBreak.setSpokenOutcome(sortPlanBreakVO.getSpokenOutcome());
-        sortPlanBreak.setPrintedOutcome(sortPlanBreakVO.getPrintedOutcome());
-
-        sortPlanService.saveBreak(sortPlanBreak);
-        return SortPlanBreakVO.build(sortPlanBreak);
-    }
 }

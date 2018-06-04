@@ -17,19 +17,42 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@RequestMapping(path = "/rest/api/sortPlanBreak")
+@RequestMapping(path = "/rest/api")
 public class SortPlanBreakRestController {
 
     @Autowired
     private SortPlanService sortPlanService;
 
-    @RequestMapping(value = "/{id}", method = GET)
+    @RequestMapping(value = "/sortPlanBreak/{id}", method = GET)
     public SortPlanBreakVO get(@PathVariable("id") int id) {
         return SortPlanBreakVO.build(sortPlanService.loadBreak(id));
     }
 
-    @RequestMapping(value = "/{id}", method = DELETE)
+    @RequestMapping(value = "/sortPlanBreak/{id}", method = DELETE)
     public void delete(@PathVariable("id") int id) {
         sortPlanService.deleteBreak(id);
     }
+
+    @RequestMapping(path = "/sortPlan/{id}/break", method = POST)
+    public SortPlanBreakVO save(@PathVariable("id") Integer id,
+                                @RequestBody SortPlanBreakVO sortPlanBreakVO,
+                                HttpServletResponse response) {
+        SortPlan sortPlan = sortPlanService.load(id);
+        if (sortPlan == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
+        }
+        SortPlanBreak sortPlanBreak = sortPlanBreakVO.getId() == null ? new SortPlanBreak() : sortPlanService.loadBreak(sortPlanBreakVO.getId());
+
+        sortPlanBreak.setId(sortPlanBreakVO.getId());
+        sortPlanBreak.setSortPlan(sortPlan);
+        sortPlanBreak.setDescription(sortPlanBreakVO.getDescription());
+        sortPlanBreak.setDisplayOutcome(sortPlanBreakVO.getDisplayOutcome());
+        sortPlanBreak.setSpokenOutcome(sortPlanBreakVO.getSpokenOutcome());
+        sortPlanBreak.setPrintedOutcome(sortPlanBreakVO.getPrintedOutcome());
+
+        sortPlanService.saveBreak(sortPlanBreak);
+        return SortPlanBreakVO.build(sortPlanBreak);
+    }
+
 }

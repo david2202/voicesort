@@ -33,10 +33,10 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Sort Plan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <h4 class="modal-title">Sort Plan</h4>
                 </div>
                 <div id="editSortPlanBody" class="modal-body centered-text">
                     <div class="container-fluid">
@@ -106,7 +106,7 @@
                 caseSensitive: false,
                 formatters: {
                     "link": function(column, row) {
-                        return '<a href="' + [[@{/sortplan}]] + '/' + row.id + '/sortPlanBreaks">' + row.description + '</a>';
+                        return '<a href="' + [[@{/sortplan}]] + '/' + row.id + '/breaks">' + row.description + '</a>';
                     },
                     "checkbox": function(column, row) {
                         if (row.print === true) {
@@ -171,7 +171,7 @@
             var header = $("meta[name='_csrf_header']").attr("content");
             $.ajax({
                 type : "POST",
-                url : /*[[@{/rest/api/sortPlan/}]]*/'/rest/api/sortPlan/',
+                url : '/rest/api/sortPlan',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -218,7 +218,7 @@
         function listSortPlans(callback) {
             $.ajax({
                 type : "GET",
-                url : /*[[@{/rest/api/sortPlan/}]]*/'/rest/api/sortPlan/',
+                url : [[@{/rest/api/sortPlans/}]],
                 success : function(response) {
                     <!--/* Need to flatten the data for bootgrid */-->
                     var rows = [];

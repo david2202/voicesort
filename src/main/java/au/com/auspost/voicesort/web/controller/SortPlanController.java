@@ -36,11 +36,20 @@ public class SortPlanController {
         return mav;
     }
 
-    @RequestMapping(path = "/sortplan/{id}/sortPlanBreaks", method = RequestMethod.GET)
+    @RequestMapping(path = "/sortplan/{id}/breaks", method = RequestMethod.GET)
     public ModelAndView sortPlanBreaks(@PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView("sortplanbreaks");
         SortPlan sortPlan = sortPlanService.load(id);
         mav.addObject("sortPlan", sortPlan);
+        return mav;
+    }
+
+    @RequestMapping(path = "/sortplan/{id}/break/{breakId}/ranges", method = RequestMethod.GET)
+    public ModelAndView sortPlanBreakRanges(@PathVariable("id") Integer id,
+                                            @PathVariable("breakId") Integer sortPlanBreakId) {
+        ModelAndView mav = new ModelAndView("sortplanbreakranges");
+        SortPlanBreak sortPlanBreak = sortPlanService.loadBreak(sortPlanBreakId);
+        mav.addObject("sortPlanBreak", sortPlanBreak);
         return mav;
     }
 }

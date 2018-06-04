@@ -6,27 +6,51 @@
 <!-- API Key AIzaSyARB7odEMxJYFxgOx5-eBjmx0iF6CZ8zdk -->
 <body>
 <div layout:fragment="content">
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-    <form th:action="@{/login}" method="post">
-        <div class="row">
-            <div class="form-group col-md-4">
-                <label for="username" class="control-label">User:</label>
-                <input id="username" name="username" type="text" class="form-control" placeholder="Enter your user name" />
+    <div id="login" class="modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <form th:action="@{/login}" method="post">
+                    <div id="loginBody" class="modal-body centered-text">
+                        <div th:if="${param.error}" class="alert alert-danger">
+                            Invalid username and password.
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-success">
+                            You have been logged out.
+                        </div>
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="username" class="control-label">User:</label>
+                                        <input id="username" name="username" type="text" class="form-control" placeholder="Enter your user name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="password" class="control-label">Password:</label>
+                                        <input id="password" name="password" type="password" class="form-control" placeholder="Enter your password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Sign In" class="btn btn-primary"/>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-4">
-                <label for="password" class="control-label">Password:</label>
-                <input id="password" name="password" type="password" class="form-control" placeholder="Enter your password" />
-            </div>
-        </div>
-        <div><input type="submit" value="Sign In" class="btn btn-default"/></div>
-    </form>
+    </div>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(window).on('load',function(){
+        $('#login').modal('show');
+    });
+    /*]]>*/
+    </script>
 </div>
 </body>
 </html>

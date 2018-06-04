@@ -1,6 +1,7 @@
 package au.com.auspost.voicesort.service;
 
 import au.com.auspost.voicesort.dao.SortPlanBreakDao;
+import au.com.auspost.voicesort.dao.SortPlanBreakRangeDao;
 import au.com.auspost.voicesort.dao.SortPlanDao;
 import au.com.auspost.voicesort.domain.SortPlan;
 import au.com.auspost.voicesort.domain.SortPlanBreak;
@@ -18,6 +19,9 @@ public class SortPlanService {
 
     @Autowired
     private SortPlanBreakDao sortPlanBreakDao;
+
+    @Autowired
+    private SortPlanBreakRangeDao sortPlanBreakRangeDao;
 
     public SortPlanBreak findBreak(Integer sortPlanId, Integer postcode) {
         SortPlan sortPlan = sortPlanDao.getOne(sortPlanId);
@@ -47,6 +51,10 @@ public class SortPlanService {
         return sortPlanBreakDao.getOne(id);
     }
 
+    public SortPlanBreakRange loadBreakRange(int id) {
+        return sortPlanBreakRangeDao.getOne(id);
+    }
+
     public List<SortPlan> list() {
         return sortPlanDao.findAll(new Sort(Sort.Direction.ASC, "description"));
     }
@@ -59,11 +67,19 @@ public class SortPlanService {
         sortPlanBreakDao.save(sortPlanBreak);
     }
 
+    public void saveBreakRange(SortPlanBreakRange sortPlanBreakRange) {
+        sortPlanBreakRangeDao.save(sortPlanBreakRange);
+    }
+
     public void delete(Integer id) {
         sortPlanDao.deleteById(id);
     }
 
     public void deleteBreak(Integer id) {
         sortPlanBreakDao.deleteById(id);
+    }
+
+    public void deleteBreakRange(Integer id) {
+        sortPlanBreakRangeDao.deleteById(id);
     }
 }

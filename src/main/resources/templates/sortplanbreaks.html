@@ -16,7 +16,7 @@
                 <table id="grid-basic" class="table table-striped table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th data-column-id="description">Description</th>
+                            <th data-column-id="description" data-formatter="link">Description</th>
                             <th data-column-id="displayOutcome">Display</th>
                             <th data-column-id="spokenOutcome">Spoken</th>
                             <th data-column-id="printedOutcome">Printed</th>
@@ -40,10 +40,10 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Sort Plan Break</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <h4 class="modal-title">Sort Plan Break</h4>
                 </div>
                 <div id="editSortPlanBreakBody" class="modal-body centered-text">
                     <div class="container-fluid">
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label for="printedOutcome" class="col-sm-3 control-label">Printed <Outcome></Outcome></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="printedOutcome" placeholder="Spoken outcome" />
+                                    <input type="text" class="form-control" id="printedOutcome" placeholder="Printed outcome" />
                                 </div>
                             </div>
                         </form>
@@ -117,7 +117,7 @@
                 caseSensitive: false,
                 formatters: {
                     "link": function(column, row) {
-                        return "<a href=\"javascript:loadDetails('"+row.id+"')\">"+row.id+"</a>";
+                        return '<a href="' + [[@{/sortplan}]] + '/' + sortPlanId + '/break/' + row.id + '/ranges">' + row.description + '</a>';
                     },
                     "commands": function(column, row) {
                         return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-pencil"></span></button> ' +
@@ -175,7 +175,7 @@
             var header = $("meta[name='_csrf_header']").attr("content");
             $.ajax({
                 type : "POST",
-                url : [[@{/rest/api/sortPlan/}]] + sortPlanId + "/sortPlanBreak",
+                url : '/rest/api/sortPlan/' + sortPlanId + '/break',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
