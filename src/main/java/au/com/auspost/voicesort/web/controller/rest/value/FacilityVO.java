@@ -15,6 +15,8 @@ public class FacilityVO {
 
     private String name;
 
+    private String code;
+
     @JsonInclude(NON_EMPTY)
     @Singular
     private List<SortPlanVO> sortPlans;
@@ -26,6 +28,7 @@ public class FacilityVO {
         return FacilityVO.builder()
                 .id(facility.getId())
                 .name(facility.getName())
+                .code(facility.getCode())
                 .sortPlans(sortPlans)
                 .build();
     }

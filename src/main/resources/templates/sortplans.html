@@ -42,25 +42,26 @@
                     <div class="container-fluid">
                         <form id="editSortPlanForm" class="form-horizontal">
                             <input id="id" type="hidden" />
-                            <div class="form-group">
-                                <label for="description" class="col-sm-3 control-label">Description</label>
+                            <div class="form-group required row">
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="description" placeholder="Description" />
+                                    <label for="description" class="control-label">Description</label>
+                                    <input id="description" name="description" type="text" class="form-control" placeholder="Please enter the description" required maxlength="40" data-toggle="tooltip" title="Description for the Sort Plan"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="facility" class="col-sm-3 control-label">Facility</label>
+                            <div class="form-group required row">
                                 <div class="col-sm-9">
-                                    <select id="facility" name="facility" class="form-control">
+                                    <label for="facility" class="control-label">Facility</label>
+                                    <select id="facility" name="facility" class="form-control" required data-toggle="tooltip" title="Which facility will use this sort plan?">
+                                        <option value="" selected disabled>Please select a facility</option>
                                         <option th:each="facility: ${facilities}" th:value="${facility.id}" th:text="${facility.name}" />
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-9">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
                                     <div class="checkbox">
                                         <label>
-                                            <input id="print" type="checkbox" value="true"> Print</label>
+                                            <input id="print" name="print" type="checkbox" value="true" data-toggle="tooltip" title="Does this sort plan print labels?"> Print</label>
                                         </label>
                                     </div>
                                 </div>
@@ -102,6 +103,7 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         $( document ).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
             var grid = $("#grid-basic").bootgrid({
                 caseSensitive: false,
                 formatters: {
@@ -158,36 +160,63 @@
             });
         });
 
+        $("#editSortPlanForm").validate({
+            debug:true,
+            messages: {
+                description: "Please enter a description of the sort plan",
+                facility: "Please select a facility"
+            },
+            errorElement: errorElement,
+            errorPlacement: errorPlacement,
+            highlight: highlight,
+            unhighlight: unhighlight
+        });
+
         $("#editSortPlanSave").click(function() {
-            var sortPlan = {
-                id: $("#id").val(),
-                description: $("#description").val(),
-                print: $("#print").is(":checked"),
-                facility: {
-                    id: $("#facility").val()
-                }
-            };
-            var token = $("meta[name='_csrf']").attr("content");
-            var header = $("meta[name='_csrf_header']").attr("content");
-            $.ajax({
-                type : "POST",
-                url : '/rest/api/sortPlan',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    [header]: token
-                },
-                data: JSON.stringify(sortPlan),
-                success : function(response) {
-                    listSortPlans(function(response) {
-                        $("#grid-basic").bootgrid("clear").bootgrid("append", response);
-                    });
-                    $("#editSortPlan").modal('hide');
-                },
-                error : function(xhr, textStatus, errorThrown) {
-                    alert("An unexpected error has occurred: " + errorThrown);
-                }
-            });
+            if ($("#editSortPlanForm").valid()) {
+                var sortPlan = {
+                    id: $("#id").val(),
+                    description: $("#description").val(),
+                    print: $("#print").is(":checked"),
+                    facility: {
+                        id: $("#facility").val()
+                    }
+                };
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                $.ajax({
+                    type : "POST",
+                    url : '/rest/api/sortPlan',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        [header]: token
+                    },
+                    data: JSON.stringify(sortPlan),
+                    success : function(response) {
+                        listSortPlans(function(response) {
+                            $("#grid-basic").bootgrid("clear").bootgrid("append", response);
+                        });
+                        $("#editSortPlan").modal('hide');
+                    },
+                    statusCode: {
+                        422: function(response) {
+                            var validator = $("#editSortPlanForm").validate();
+                            var data = response.responseJSON;
+                            var errors = {};
+                            for (var i = 0; i < data.fieldErrors.length; i++) {
+                                errors[data.fieldErrors[i].field] = data.fieldErrors[i].defaultMessage;
+                            }
+                            validator.showErrors(errors);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        if (xhr.status !== 422) {
+                            alert("An unexpected error has occurred: " + errorThrown);
+                        }
+                    }
+                });
+            }
         });
 
         $("#deleteSortPlanConfirm").click(function() {
@@ -253,8 +282,12 @@
         }
 
         function clearForm() {
-            $("#editSortPlanForm").find('input:text, input:password, input:hidden, select, textarea').val('');
-            $("#editSortPlanForm").find('input:radio, input:checkbox').prop('checked', false);        }
+            $form = $("#editSortPlanForm");
+            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
+            $form.find('input:radio, input:checkbox').prop('checked', false);
+            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
+            $form.validate().resetForm();
+        }
         /*]]>*/
     </script>
 </div>

@@ -48,16 +48,16 @@
                     <div class="container-fluid">
                         <form id="editSortPlanBreakRangeForm" class="form-horizontal">
                             <input id="id" type="hidden" />
-                            <div class="form-group">
-                                <label for="postcodeStart" class="col-sm-3 control-label">Postcode Start</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="postcodeStart" placeholder="Start postcode" />
+                            <div class="form-group required row">
+                                <div class="col-sm-9">
+                                    <label for="postcodeStart" class="control-label">Postcode Start</label>
+                                    <input type="text" class="form-control" id="postcodeStart" name="postcodeStart" placeholder="Start postcode" maxlength="4" required/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="postcodeEnd" class="col-sm-3 control-label">Postcode End</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="postcodeEnd" placeholder="End postcode" />
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label for="postcodeEnd" class="control-label">Postcode End</label>
+                                    <input type="text" class="form-control" id="postcodeEnd" name="postcodeEnd" placeholder="End postcode" maxlength="4"/>
                                 </div>
                             </div>
                         </form>
@@ -148,33 +148,60 @@
             });
         });
 
+        $("#editSortPlanBreakRangeForm").validate({
+            debug:true,
+            messages: {
+                postcodeStart: "Please enter the start of the postcode range"
+            },
+            errorElement: errorElement,
+            errorPlacement: errorPlacement,
+            highlight: highlight,
+            unhighlight: unhighlight
+        });
+
         $("#editSortPlanBreakRangeSave").click(function() {
-            var sortPlanBreakRange = {
-                id: $("#id").val(),
-                postcodeStart: $("#postcodeStart").val(),
-                postcodeEnd: $("#postcodeEnd").val()
-            };
-            var token = $("meta[name='_csrf']").attr("content");
-            var header = $("meta[name='_csrf_header']").attr("content");
-            $.ajax({
-                type : "POST",
-                url : '/rest/api/sortPlanBreak/' + sortPlanBreakId + '/range',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    [header]: token
-                },
-                data: JSON.stringify(sortPlanBreakRange),
-                success : function(response) {
-                    listSortPlanBreakRanges(function(response) {
-                        $("#grid-basic").bootgrid("clear").bootgrid("append", response);
-                    });
-                    $("#editSortPlanBreakRange").modal('hide');
-                },
-                error : function(xhr, textStatus, errorThrown) {
-                    alert("An unexpected error has occurred: " + errorThrown);
-                }
-            });
+            if ($("#editSortPlanBreakRangeForm").valid()) {
+                var sortPlanBreakRange = {
+                    id: $("#id").val(),
+                    sortPlanBreakId: sortPlanBreakId,
+                    postcodeStart: $("#postcodeStart").val(),
+                    postcodeEnd: $("#postcodeEnd").val()
+                };
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                $.ajax({
+                    type : "POST",
+                    url : '/rest/api/sortPlanBreak/' + sortPlanBreakId + '/range',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        [header]: token
+                    },
+                    data: JSON.stringify(sortPlanBreakRange),
+                    success: function(response) {
+                        listSortPlanBreakRanges(function(response) {
+                            $("#grid-basic").bootgrid("clear").bootgrid("append", response);
+                        });
+                        $("#editSortPlanBreakRange").modal('hide');
+                    },
+                    statusCode: {
+                        422: function(response) {
+                            var validator = $("#editSortPlanBreakRangeForm").validate();
+                            var data = response.responseJSON;
+                            var errors = {};
+                            for (var i = 0; i < data.fieldErrors.length; i++) {
+                                errors[data.fieldErrors[i].field] = data.fieldErrors[i].defaultMessage;
+                            }
+                            validator.showErrors(errors);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        if (xhr.status !== 422) {
+                            alert("An unexpected error has occurred: " + errorThrown);
+                        }
+                    }
+                });
+            }
         });
 
         $("#deleteSortPlanBreakRangeConfirm").click(function() {
@@ -241,8 +268,11 @@
         }
 
         function clearForm() {
-            $("#editSortPlanBreakRangeForm").find('input:text, input:password, input:hidden, select, textarea').val('');
-            $("#editSortPlanBreakRangeForm").find('input:radio, input:checkbox').prop('checked', false);
+            $form = $("#editSortPlanBreakRangeForm");
+            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
+            $form.find('input:radio, input:checkbox').prop('checked', false);
+            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
+            $form.validate().resetForm();
         }
         /*]]>*/
     </script>

@@ -16,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(path = "/rest/api/facility")
-public class FacilityController {
+public class FacilityRestController {
     @Autowired
     private FacilityService facilityService;
 

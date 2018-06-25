@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class SortPlanRestController {
     }
 
     @RequestMapping(value = "/sortPlan", method = POST)
-    public SortPlanVO save(@RequestBody SortPlanVO sortPlanVO, HttpServletResponse response) {
+    public SortPlanVO save(@RequestBody @Valid SortPlanVO sortPlanVO, HttpServletResponse response) {
         Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
         if (facility == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

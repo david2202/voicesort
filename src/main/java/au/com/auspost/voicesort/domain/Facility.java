@@ -26,4 +26,7 @@ public class Facility extends BaseEntity {
 
     @Getter @Setter
     private String name;
+
+    @Getter @Setter
+    private String code;
 }

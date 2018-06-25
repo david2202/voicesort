@@ -10,6 +10,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
@@ -17,9 +21,15 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class SortPlanBreakRangeVO {
     private Integer id;
 
+    @JsonInclude(NON_NULL)
+    private Integer sortPlanBreakId;
+
+    @NotNull
+    @Min(100) @Max(9999)
     private Integer postcodeStart;
 
     @JsonInclude(NON_NULL)
+    @Min(100) @Max(9999)
     private Integer postcodeEnd;
 
     public static SortPlanBreakRangeVO build(SortPlanBreakRange sortPlanBreakRange) {

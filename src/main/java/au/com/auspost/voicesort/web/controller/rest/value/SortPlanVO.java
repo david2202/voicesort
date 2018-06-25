@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +17,13 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class SortPlanVO {
     private Integer id;
 
+    @NotNull
+    @Size(min = 2, max = 40)
     private String description;
 
     private Boolean print;
 
+    @NotNull
     private FacilityVO facility;
 
     @JsonInclude(NON_EMPTY)

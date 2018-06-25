@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class SortPlanBreakRestController {
 
     @RequestMapping(path = "/sortPlan/{id}/break", method = POST)
     public SortPlanBreakVO save(@PathVariable("id") Integer id,
-                                @RequestBody SortPlanBreakVO sortPlanBreakVO,
+                                @RequestBody @Valid SortPlanBreakVO sortPlanBreakVO,
                                 HttpServletResponse response) {
         SortPlan sortPlan = sortPlanService.load(id);
         if (sortPlan == null) {

@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +20,15 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class SortPlanBreakVO {
     private Integer id;
 
+    @NotNull
+    @Size(min = 2, max = 40)
     private String description;
 
+    @NotNull
+    @Size(min = 2, max = 40)
     private String displayOutcome;
 
+    @Size(min = 2, max = 40)
     private String spokenOutcome;
 
     @JsonInclude(NON_NULL)

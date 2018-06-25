@@ -2,16 +2,15 @@ package au.com.auspost.voicesort.web.controller.rest;
 
 import au.com.auspost.voicesort.domain.SortPlanBreak;
 import au.com.auspost.voicesort.domain.SortPlanBreakRange;
+import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakRangeValidator;
 import au.com.auspost.voicesort.service.SortPlanService;
 import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakRangeVO;
-import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -22,7 +21,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class SortPlanBreakRangeRestController {
 
     @Autowired
+    private SortPlanBreakRangeValidator sortPlanBreakRangeValidator;
+
+    @Autowired
     private SortPlanService sortPlanService;
+
+    @InitBinder("sortPlanBreakRangeVO")
+    public void setupBinder(WebDataBinder binder) {
+        binder.addValidators(sortPlanBreakRangeValidator);
+    }
 
     @RequestMapping(value = "/sortPlanBreakRange/{id}", method = GET)
     public SortPlanBreakRangeVO get(@PathVariable("id") int id) {
@@ -37,7 +44,7 @@ public class SortPlanBreakRangeRestController {
 
     @RequestMapping(path = "/sortPlanBreak/{id}/range", method = POST)
     public SortPlanBreakRangeVO save(@PathVariable("id") Integer id,
-                                     @RequestBody SortPlanBreakRangeVO sortPlanBreakRangeVO,
+                                     @Valid @RequestBody SortPlanBreakRangeVO sortPlanBreakRangeVO,
                                      HttpServletResponse response) {
         SortPlanBreak sortPlanBreak = sortPlanService.loadBreak(id);
         if (sortPlanBreak == null) {

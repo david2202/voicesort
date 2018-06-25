@@ -49,28 +49,28 @@
                     <div class="container-fluid">
                         <form id="editSortPlanBreakForm" class="form-horizontal">
                             <input id="id" type="hidden" />
-                            <div class="form-group">
-                                <label for="description" class="col-sm-3 control-label">Description</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="description" placeholder="Description" />
+                            <div class="form-group required row">
+                                <div class="col-sm-8">
+                                    <label for="description" class="control-label">Description</label>
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="Description" maxlength="40" required data-toggle="tooltip" title="Description for this sort plan break"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="displayOutcome" class="col-sm-3 control-label">Display Outcome</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="displayOutcome" placeholder="Display outcome" />
+                            <div class="form-group required row">
+                                <div class="col-sm-8">
+                                    <label for="displayOutcome" class="control-label">Display Outcome</label>
+                                    <input type="text" class="form-control" id="displayOutcome" name="displayOutcome" placeholder="Display outcome" maxlength="40" required data-toggle="tooltip" title="What will be displayed on the device screen when an article is sorted to this break?"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="spokenOutcome" class="col-sm-3 control-label">Spoken Outcome</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="spokenOutcome" placeholder="Spoken outcome" />
+                            <div class="form-group required row">
+                                <div class="col-sm-8">
+                                    <label for="spokenOutcome" class="control-label">Spoken Outcome</label>
+                                    <input type="text" class="form-control" id="spokenOutcome" name="spokenOutcome" placeholder="Spoken outcome" maxlength="40" required data-toggle="tooltip" title="What will be spoken to the operator when an article is sorted to this break?"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="printedOutcome" class="col-sm-3 control-label">Printed <Outcome></Outcome></label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="printedOutcome" placeholder="Printed outcome" />
+                            <div class="form-group row">
+                                <div class="col-sm-8">
+                                    <label for="printedOutcome" class="control-label">Printed <Outcome></Outcome></label>
+                                    <input type="text" class="form-control" id="printedOutcome" name="printedOutcome" placeholder="Printed outcome" maxlength="40" data-toggle="tooltip" title="What will be printed on the printer when an article is sorted to this break?"/>
                                 </div>
                             </div>
                         </form>
@@ -163,35 +163,68 @@
             });
         });
 
+        $("#editSortPlanBreakForm").validate({
+            debug:true,
+            rules: {
+                description: "required",
+                displayOutcome: "required",
+                spokenOutcome: "required"
+            },
+            messages: {
+                description: "Please enter a description of the sort plan",
+                displayOutcome: "Please enter the text to be displayed",
+                spokenOutcome: "Please enter the text to be spoken"
+            },
+            errorElement: errorElement,
+            errorPlacement: errorPlacement,
+            highlight: highlight,
+            unhighlight: unhighlight
+        });
+
         $("#editSortPlanBreakSave").click(function() {
-            var sortPlanBreak = {
-                id: $("#id").val(),
-                description: $("#description").val(),
-                displayOutcome: $("#displayOutcome").val(),
-                spokenOutcome: $("#spokenOutcome").val(),
-                printedOutcome: $("#printedOutcome").val()
-            };
-            var token = $("meta[name='_csrf']").attr("content");
-            var header = $("meta[name='_csrf_header']").attr("content");
-            $.ajax({
-                type : "POST",
-                url : '/rest/api/sortPlan/' + sortPlanId + '/break',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    [header]: token
-                },
-                data: JSON.stringify(sortPlanBreak),
-                success : function(response) {
-                    listSortPlanBreaks(function(response) {
-                        $("#grid-basic").bootgrid("clear").bootgrid("append", response);
-                    });
-                    $("#editSortPlanBreak").modal('hide');
-                },
-                error : function(xhr, textStatus, errorThrown) {
-                    alert("An unexpected error has occurred: " + errorThrown);
-                }
-            });
+            if ($("#editSortPlanBreakForm").valid()) {
+                var sortPlanBreak = {
+                    id: $("#id").val(),
+                    description: $("#description").val(),
+                    displayOutcome: $("#displayOutcome").val(),
+                    spokenOutcome: $("#spokenOutcome").val(),
+                    printedOutcome: $("#printedOutcome").val()
+                };
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                $.ajax({
+                    type : "POST",
+                    url : '/rest/api/sortPlan/' + sortPlanId + '/break',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        [header]: token
+                    },
+                    data: JSON.stringify(sortPlanBreak),
+                    success : function(response) {
+                        listSortPlanBreaks(function(response) {
+                            $("#grid-basic").bootgrid("clear").bootgrid("append", response);
+                        });
+                        $("#editSortPlanBreak").modal('hide');
+                    },
+                    statusCode: {
+                        422: function(response) {
+                            var validator = $("#editSortPlanBreakForm").validate();
+                            var data = response.responseJSON;
+                            var errors = {};
+                            for (var i = 0; i < data.fieldErrors.length; i++) {
+                                errors[data.fieldErrors[i].field] = data.fieldErrors[i].defaultMessage;
+                            }
+                            validator.showErrors(errors);
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        if (xhr.status !== 422) {
+                            alert("An unexpected error has occurred: " + errorThrown);
+                        }
+                    }
+                });
+            }
         });
 
         $("#deleteSortPlanBreakConfirm").click(function() {
@@ -272,8 +305,11 @@
         }
 
         function clearForm() {
-            $("#editSortPlanBreakForm").find('input:text, input:password, input:hidden, select, textarea').val('');
-            $("#editSortPlanBreakForm").find('input:radio, input:checkbox').prop('checked', false);
+            $form = $("#editSortPlanBreakForm");
+            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
+            $form.find('input:radio, input:checkbox').prop('checked', false);
+            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
+            $form.validate().resetForm();
         }
         /*]]>*/
     </script>
