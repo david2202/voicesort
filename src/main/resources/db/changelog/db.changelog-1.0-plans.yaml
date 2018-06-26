@@ -4073,38 +4073,6 @@ databaseChangeLog:
                 valueComputed: (SELECT max(id) FROM sort_plan)
             - column:
                 name: description
-                value: Narre Warren
-            - column:
-                name: display_outcome
-                value: 07 Narre Warren
-            - column:
-                name: spoken_outcome
-                value: Metro
-            - column:
-                name: printed_outcome
-                value: 7
-
-        - insert:
-            tableName: sort_plan_break_range
-            columns:
-            - column:
-                name: sort_plan_break_id
-                valueComputed: (SELECT MAX(id) FROM sort_plan_break)
-            - column:
-                name: postcode_start
-                value: 3803
-            - column:
-                name: postcode_end
-                value: 3809
-
-        - insert:
-            tableName: sort_plan_break
-            columns:
-            - column:
-                name: sort_plan_id
-                valueComputed: (SELECT max(id) FROM sort_plan)
-            - column:
-                name: description
                 value: St Kilda
             - column:
                 name: display_outcome
@@ -4589,10 +4557,10 @@ databaseChangeLog:
                 valueComputed: (SELECT max(id) FROM sort_plan)
             - column:
                 name: description
-                value: Pakenham,
+                value: Pakenham
             - column:
                 name: display_outcome
-                value: 06 Pakenham,
+                value: 06 Pakenham
             - column:
                 name: spoken_outcome
                 value: Metro
@@ -4608,10 +4576,10 @@ databaseChangeLog:
                 valueComputed: (SELECT MAX(id) FROM sort_plan_break)
             - column:
                 name: postcode_start
-                value: 3810
+                value: 3803
             - column:
                 name: postcode_end
-                value: 
+                value: 3810
 
         - insert:
             tableName: sort_plan_break_range
