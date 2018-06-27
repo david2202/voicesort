@@ -3117,6 +3117,19 @@ databaseChangeLog:
                 valueComputed: (SELECT MAX(id) FROM sort_plan_break)
             - column:
                 name: postcode_start
+                value: 3342
+            - column:
+                name: postcode_end
+                value: 3424
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: (SELECT MAX(id) FROM sort_plan_break)
+            - column:
+                name: postcode_start
                 value: 3464
             - column:
                 name: postcode_end
@@ -5515,4 +5528,36 @@ databaseChangeLog:
             - column:
                 name: postcode_end
                 value: 7999
+
+        - insert:
+            tableName: sort_plan_break
+            columns:
+            - column:
+                name: sort_plan_id
+                valueComputed: (SELECT max(id) FROM sort_plan)
+            - column:
+                name: description
+                value: Bulk Returns
+            - column:
+                name: display_outcome
+                value: 37 Bulk Returns
+            - column:
+                name: spoken_outcome
+                value: Country
+            - column:
+                name: printed_outcome
+                value: 37
+
+        - insert:
+            tableName: sort_plan_break_range
+            columns:
+            - column:
+                name: sort_plan_break_id
+                valueComputed: (SELECT MAX(id) FROM sort_plan_break)
+            - column:
+                name: postcode_start
+                value: 8438
+            - column:
+                name: postcode_end
+                value:
 
