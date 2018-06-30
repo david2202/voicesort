@@ -467,5 +467,51 @@ databaseChangeLog:
                 constraints:
                   nullable: false
 
+    - changeSet:
+        id: 1.0-5
+        author: howed
+        comment: Create speech synonym table
+        changes:
+        - createTable:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: id
+                type: java.sql.Types.INTEGER
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: version
+                type: java.sql.Types.BIGINT
+                defaultValue: 0
+                constraints:
+                  nullable: false
+            - column:
+                name: speech_word
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: false
+            - column:
+                name: synonym
+                type: java.sql.Types.VARCHAR(40)
+                constraints:
+                  nullable: true
+            - column:
+                name: created
+                type: java.sql.Types.TIMESTAMP
+                defaultValue: ${now}
+                constraints:
+                  nullable: false
+            - column:
+                name: last_updated
+                type: java.sql.Types.TIMESTAMP
+                defaultValue: ${now}
+                constraints:
+                  nullable: false
+
     - include:
         - file: db/changelog/db.changelog-1.0-plans.yaml
+    - include:
+        - file: db/changelog/db.changelog-1.0-speechSynonyms.yaml

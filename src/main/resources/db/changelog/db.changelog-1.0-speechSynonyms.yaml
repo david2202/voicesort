@@ -1,0 +1,159 @@
+databaseChangeLog:
+    - changeSet:
+        id: 1.0-5-1
+        author: howed
+        comment: Inserting speech synonyms for testing
+        changes:
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: one
+            - column:
+                name: synonym
+                value: 1
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: won
+            - column:
+                name: synonym
+                value: one
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: two
+            - column:
+                name: synonym
+                value: 2
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: to
+            - column:
+                name: synonym
+                value: 2
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: too
+            - column:
+                name: synonym
+                value: 2
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: three
+            - column:
+                name: synonym
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: tree
+            - column:
+                name: synonym
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: four
+            - column:
+                name: synonym
+                value: 4
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: for
+            - column:
+                name: synonym
+                value: 4
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: five
+            - column:
+                name: synonym
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: six
+            - column:
+                name: synonym
+                value: 6
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: sex
+            - column:
+                name: synonym
+                value: 6
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: seven
+            - column:
+                name: synonym
+                value: 7
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: eight
+            - column:
+                name: synonym
+                value: 8
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: ate
+            - column:
+                name: synonym
+                value: 8
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: nine
+            - column:
+                name: synonym
+                value: 9
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: speech_word
+                value: zero
+            - column:
+                name: synonym
+                value: 0
