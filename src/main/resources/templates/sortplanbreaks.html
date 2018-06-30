@@ -129,7 +129,7 @@
                 grid.find(".command-edit").on("click", function(e) {
                     var id = $(this).data("row-id");
                     retrieveSortPlanBreak(id, function(response) {
-                        clearForm();
+                        clearForm($("#editSortPlanBreakForm"));
                         $("#id").val(response.id);
                         $("#description").val(response.description);
                         $("#displayOutcome").val(response.displayOutcome);
@@ -154,7 +154,7 @@
                 .append('<div class="btn-group"><button id="newSortPlanBreak" type="button" class="btn btn-primary">New...</button></div>');
 
             $("#newSortPlanBreak").click(function() {
-                clearForm();
+                clearForm($("#editSortPlanBreakForm"));
                 $("#editSortPlanBreak").modal('show');
             });
 
@@ -302,14 +302,6 @@
                     alert("An unexpected error has occurred " + errorThrown);
                 }
             });
-        }
-
-        function clearForm() {
-            $form = $("#editSortPlanBreakForm");
-            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
-            $form.find('input:radio, input:checkbox').prop('checked', false);
-            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
-            $form.validate().resetForm();
         }
         /*]]>*/
     </script>

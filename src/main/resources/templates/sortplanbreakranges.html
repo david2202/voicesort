@@ -115,7 +115,7 @@
                 grid.find(".command-edit").on("click", function(e) {
                     var id = $(this).data("row-id");
                     retrieveSortPlanBreakRange(id, function(response) {
-                        clearForm();
+                        clearForm($("#editSortPlanBreakRangeForm"));
                         $("#id").val(response.id);
                         $("#postcodeStart").val(response.postcodeStart);
                         if (response.hasOwnProperty('postcodeEnd')) {
@@ -139,7 +139,7 @@
                 .append('<div class="btn-group"><button id="newSortPlanBreakRange" type="button" class="btn btn-primary">New...</button></div>');
 
             $("#newSortPlanBreakRange").click(function() {
-                clearForm();
+                clearForm($("#editSortPlanBreakRangeForm"));
                 $("#editSortPlanBreakRange").modal('show');
             });
 
@@ -265,14 +265,6 @@
                     alert("An unexpected error has occurred " + errorThrown);
                 }
             });
-        }
-
-        function clearForm() {
-            $form = $("#editSortPlanBreakRangeForm");
-            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
-            $form.find('input:radio, input:checkbox').prop('checked', false);
-            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
-            $form.validate().resetForm();
         }
         /*]]>*/
     </script>

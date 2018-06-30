@@ -19,24 +19,18 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_ONLY;
 public class SortPlan extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name="facility_id")
-    @Getter @Setter
     private Facility facility;
 
     @OneToMany(mappedBy = "sortPlan", cascade = CascadeType.ALL, fetch = LAZY)
     @OrderBy("description")
-    @Getter @Setter
     private List<SortPlanBreak> sortPlanBreaks = new ArrayList<>();
 
-    @Getter @Setter
     private String description;
 
-    @Getter @Setter
     @Column(name = "print_ind")
     private Boolean print;
 }

@@ -21,7 +21,7 @@ databaseChangeLog:
                 value: won
             - column:
                 name: synonym
-                value: one
+                value: 1
         - insert:
             tableName: speech_synonym
             columns:

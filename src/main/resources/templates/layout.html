@@ -53,6 +53,7 @@
                     <ul class="dropdown-menu">
                         <li th:classappend="${currentPage == 'sortPlan'} ? 'active'"><a th:href="@{/sortplan}" href="sortplan.html">Execute</a></li>
                         <li th:classappend="${currentPage == 'sortPlans'} ? 'active'"><a th:href="@{/sortplans}" href="sortplans.html">Maintain</a></li>
+                        <li th:classappend="${currentPage == 'speechSynonyms'} ? 'active'"><a th:href="@{/speechSynonyms}" href="speechSynonyms.html">Speech Synonyms</a></li>
                     </ul>
                 </li>
                 <li th:classappend="${currentPage == 'learn'} ? 'active'"><a th:href="@{/learn}" href="learn.html">Learn</a></li>
@@ -77,6 +78,13 @@
         var unhighlight = function(element, errorClass, validClass) {
                             $(element).parents(".form-group").addClass("has-success").removeClass("has-error");
                         };
+
+        function clearForm($form) {
+            $form.find('input:text, input:password, input:hidden, select, textarea').val('');
+            $form.find('input:radio, input:checkbox').prop('checked', false);
+            $form.find('.form-group').removeClass("has-error").removeClass("has-success");
+            $form.validate().resetForm();
+        }
         /*]]>*/
     </script>
 </nav>

@@ -4,6 +4,8 @@ import au.com.auspost.voicesort.dao.SpeechSynonymDao;
 import au.com.auspost.voicesort.domain.SpeechSynonym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +16,20 @@ public class SpeechSynonymService {
     private SpeechSynonymDao speechSynonymDao;
 
     public List<SpeechSynonym> list() {
-        return speechSynonymDao.findAll();
+        return speechSynonymDao.findAllByOrderBySynonymAsc();
+    }
+
+    public SpeechSynonym load(Integer id) {
+        return speechSynonymDao.getOne(id);
+    }
+
+    @Transactional(propagation= Propagation.REQUIRED)
+    public void save(SpeechSynonym speechSynonym) {
+        speechSynonymDao.save(speechSynonym);
+    }
+
+    @Transactional(propagation= Propagation.REQUIRED)
+    public void delete(Integer id) {
+        speechSynonymDao.deleteById(id);
     }
 }

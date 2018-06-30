@@ -2,22 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}"
-      th:with="currentPage='sortPlans'">
+      th:with="currentPage='speechSynonyms'">
 <body>
 <div layout:fragment="content">
     <ol class="breadcrumb">
-        <li>Sort Plans</li>
+        <li>Speech Synonyms</li>
     </ol>
-    <h2>Sort Plans</h2>
+    <h2>Speech Synonyms</h2>
     <div class="row">
         <div class="col-md-8">
             <div class="table-responsive">
                 <table id="grid-basic" class="table table-condensed table-hover table-striped">
                     <thead>
                     <tr>
-                        <th data-column-id="description" data-formatter="link">Description</th>
-                        <th data-column-id="facilityName">Facility</th>
-                        <th data-column-id="print" data-type="boolean" data-formatter="checkbox" data-searchable="false">Print</th>
+                        <th data-column-id="speechWord">Speech Word</th>
+                        <th data-column-id="synonym">Synonym</th>
                         <th data-column-id="commands" data-formatter="commands" data-sortable="false" data-searchable="false">Commands</th>
                     </tr>
                     </thead>
@@ -28,72 +27,60 @@
         </div>
     </div>
 
-    <div id="editSortPlan" class="modal fade" role="dialog">
+    <div id="editSpeechSynonym" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Sort Plan</h4>
+                    <h4 class="modal-title">Speech Synonym</h4>
                 </div>
-                <div id="editSortPlanBody" class="modal-body centered-text">
+                <div id="editSpeechSynonymBody" class="modal-body centered-text">
                     <div class="container-fluid">
-                        <form id="editSortPlanForm" class="form-horizontal">
+                        <form id="editSpeechSynonymForm" class="form-horizontal">
                             <input id="id" type="hidden" />
                             <div class="form-group required row">
                                 <div class="col-sm-9">
-                                    <label for="description" class="control-label">Description</label>
-                                    <input id="description" name="description" type="text" class="form-control" placeholder="Please enter the description" required maxlength="40" data-toggle="tooltip" title="Description for the Sort Plan"/>
+                                    <label for="speechWord" class="control-label">Speech Word</label>
+                                    <input id="speechWord" name="speechWord" type="text" class="form-control" placeholder="Please enter the speech word" required maxlength="40" data-toggle="tooltip" title="The word that is recognised by the speech recognition"/>
                                 </div>
                             </div>
                             <div class="form-group required row">
                                 <div class="col-sm-9">
-                                    <label for="facility" class="control-label">Facility</label>
-                                    <select id="facility" name="facility" class="form-control" required data-toggle="tooltip" title="Which facility will use this sort plan?">
-                                        <option value="" selected disabled>Please select a facility</option>
-                                        <option th:each="facility: ${facilities}" th:value="${facility.id}" th:text="${facility.name}" />
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-9">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="print" name="print" type="checkbox" value="true" data-toggle="tooltip" title="Does this sort plan print labels?"> Print</label>
-                                        </label>
-                                    </div>
+                                    <label for="synonym" class="control-label">Synonym</label>
+                                    <input id="synonym" name="synonym" type="text" class="form-control" placeholder="Please enter the synonym" required maxlength="40" data-toggle="tooltip" title="The synonym that the speech word should be replaced with"/>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="editSortPlanSave" class="btn btn-primary">Save</button>
-                    <button type="button" id="editSortPlanCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="editSpeechSynonymSave" class="btn btn-primary">Save</button>
+                    <button type="button" id="editSpeechSynonymCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="deleteSortPlan" class="modal fade" role="dialog">
+    <div id="deleteSpeechSynonym" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Sort Plan</h4>
+                    <h4 class="modal-title">Speech Synonym</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="deleteSortPlanBody" class="modal-body centered-text">
+                <div id="deleteSpeechSynonymBody" class="modal-body centered-text">
                     <div class="container-fluid">
-                        <input id="deleteSortPlanId" type="hidden" />
-                        Delete sort plan <span id="deleteSortPlanDescription">description</span>?
+                        <input id="deleteSpeechSynonymId" type="hidden" />
+                        Delete speech synonym <span id="deleteSpeechSynonymSpeechWord">word</span>?
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="deleteSortPlanConfirm" class="btn btn-primary">Confirm</button>
-                    <button type="button" id="deleteSortPlanCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="deleteSpeechSynonymConfirm" class="btn btn-primary">Confirm</button>
+                    <button type="button" id="deleteSpeechSynonymCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -106,16 +93,6 @@
             var grid = $("#grid-basic").bootgrid({
                 caseSensitive: false,
                 formatters: {
-                    "link": function(column, row) {
-                        return '<a href="' + [[@{/sortplan}]] + '/' + row.id + '/breaks">' + row.description + '</a>';
-                    },
-                    "checkbox": function(column, row) {
-                        if (row.print === true) {
-                            return '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
-                        } else {
-                            return '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
-                        }
-                    },
                     "commands": function(column, row) {
                         return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-pencil"></span></button> ' +
                             '<button type="button" class="btn btn-xs btn-default command-delete" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-trash"></span></button>';
@@ -125,45 +102,42 @@
                 <!--/* Executes after data is loaded and rendered */-->
                 grid.find(".command-edit").on("click", function(e) {
                     var id = $(this).data("row-id");
-                    retrieveSortPlan(id, function(response) {
-                        clearForm($("#editSortPlanForm"));
+                    retrieveSpeechSynonym(id, function(response) {
+                        clearForm($("#editSpeechSynonymForm"));
                         $("#id").val(response.id);
-                        $("#description").val(response.description);
-                        if (response.print) {
-                            $('#print').prop('checked', true);
-                        }
-                        $("#facility").val(response.facility.id);
-                        $("#editSortPlan").modal('show');
+                        $("#speechWord").val(response.speechWord);
+                        $("#synonym").val(response.synonym);
+                        $("#editSpeechSynonym").modal('show');
                     });
                 }).end().find(".command-delete").on("click", function(e) {
                     var id = $(this).data("row-id");
-                    retrieveSortPlan(id, function(response) {
-                        $("#deleteSortPlanId").val(id);
-                        $("#deleteSortPlanDescription").text(response.description);
-                        $("#deleteSortPlan").modal('show');
+                    retrieveSpeechSynonym(id, function(response) {
+                        $("#deleteSpeechSynonymId").val(id);
+                        $("#deleteSpeechSynonymSpeechWord").text(response.speechWord);
+                        $("#deleteSpeechSynonym").modal('show');
                     });
                 });
             });
 
             $("#grid-basic-header")
                 .find('.actions.btn-group')
-                .append('<div class="btn-group"><button id="newSortPlan" type="button" class="btn btn-primary">New...</button></div>');
+                .append('<div class="btn-group"><button id="newSpeechSynonym" type="button" class="btn btn-primary">New...</button></div>');
 
-            $("#newSortPlan").click(function() {
-                clearForm($("#editSortPlanForm"));
-                $("#editSortPlan").modal('show');
+            $("#newSpeechSynonym").click(function() {
+                clearForm($("#editSpeechSynonymForm"));
+                $("#editSpeechSynonym").modal('show');
             });
 
-            listSortPlans(function(response) {
+            listSpeechSynonyms(function(response) {
                 $("#grid-basic").bootgrid("clear").bootgrid("append", response);
             });
         });
 
-        $("#editSortPlanForm").validate({
+        $("#editSpeechSynonymForm").validate({
             debug:true,
             messages: {
-                description: "Please enter a description of the sort plan",
-                facility: "Please select a facility"
+                speechWord: "Please enter a speech word",
+                synonym: "Please enter a synonym"
             },
             errorElement: errorElement,
             errorPlacement: errorPlacement,
@@ -171,36 +145,33 @@
             unhighlight: unhighlight
         });
 
-        $("#editSortPlanSave").click(function() {
-            if ($("#editSortPlanForm").valid()) {
-                var sortPlan = {
+        $("#editSpeechSynonymSave").click(function() {
+            if ($("#editSpeechSynonymForm").valid()) {
+                var speechSynonym = {
                     id: $("#id").val(),
-                    description: $("#description").val(),
-                    print: $("#print").is(":checked"),
-                    facility: {
-                        id: $("#facility").val()
-                    }
+                    speechWord: $("#speechWord").val(),
+                    synonym: $("#synonym").val()
                 };
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
                 $.ajax({
                     type : "POST",
-                    url : '/rest/api/sortPlan',
+                    url : '/rest/api/speechSynonym',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         [header]: token
                     },
-                    data: JSON.stringify(sortPlan),
+                    data: JSON.stringify(speechSynonym),
                     success : function(response) {
-                        listSortPlans(function(response) {
+                        listSpeechSynonyms(function(response) {
                             $("#grid-basic").bootgrid("clear").bootgrid("append", response);
                         });
-                        $("#editSortPlan").modal('hide');
+                        $("#editSpeechSynonym").modal('hide');
                     },
                     statusCode: {
                         422: function(response) {
-                            var validator = $("#editSortPlanForm").validate();
+                            var validator = $("#editSpeechSynonymForm").validate();
                             var data = response.responseJSON;
                             var errors = {};
                             for (var i = 0; i < data.fieldErrors.length; i++) {
@@ -218,24 +189,24 @@
             }
         });
 
-        $("#deleteSortPlanConfirm").click(function() {
+        $("#deleteSpeechSynonymConfirm").click(function() {
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
 
-            var id = $("#deleteSortPlanId").val();
+            var id = $("#deleteSpeechSynonymId").val();
             $.ajax({
                 type : "DELETE",
-                url : [[@{/rest/api/sortPlan/}]] + id,
+                url : [[@{/rest/api/speechSynonym/}]] + id,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     [header]: token
                 },
                 success : function(response) {
-                    listSortPlans(function(response) {
+                    listSpeechSynonyms(function(response) {
                         $("#grid-basic").bootgrid("clear").bootgrid("append", response);
                     });
-                    $("#deleteSortPlan").modal('hide');
+                    $("#deleteSpeechSynonym").modal('hide');
                 },
                 error : function(xhr, textStatus, errorThrown) {
                     alert("An unexpected error has occurred: " + errorThrown);
@@ -243,23 +214,12 @@
             });
         });
 
-        function listSortPlans(callback) {
+        function listSpeechSynonyms(callback) {
             $.ajax({
                 type : "GET",
-                url : [[@{/rest/api/sortPlans/}]],
+                url : [[@{/rest/api/speechSynonyms/}]],
                 success : function(response) {
-                    <!--/* Need to flatten the data for bootgrid */-->
-                    var rows = [];
-                    for (i = 0; i < response.length; i++) {
-                        rows.push({
-                            id: response[i].id,
-                            description: response[i].description,
-                            facilityId: response[i].facility.id,
-                            facilityName: response[i].facility.name,
-                            print: response[i].print
-                        });
-                    }
-                    callback(rows);
+                    callback(response);
                 },
                 error : function(xhr, textStatus, errorThrown) {
                     alert("An unexpected error has occurred " + errorThrown);
@@ -267,10 +227,10 @@
             });
         }
 
-        function retrieveSortPlan(id, callback) {
+        function retrieveSpeechSynonym(id, callback) {
             $.ajax({
                 type : "GET",
-                url : [[@{/rest/api/sortPlan/}]] + id,
+                url : [[@{/rest/api/speechSynonym/}]] + id,
                 success : function(response) {
                     callback(response);
                 },

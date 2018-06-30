@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(
                         "/sortplan*/**").authenticated()
+                .antMatchers(
+                        "/speechSynonym*/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
             .formLogin()
