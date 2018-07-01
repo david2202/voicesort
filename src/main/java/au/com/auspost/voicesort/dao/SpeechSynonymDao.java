@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface SpeechSynonymDao extends JpaRepository<SpeechSynonym, Integer> {
-    List<SpeechSynonym> findAllByOrderBySynonymAsc();
+    List<SpeechSynonym> findAllByOrderBySpeechWordAsc();
+
+    SpeechSynonym findOneBySynonym(String synonym);
 }

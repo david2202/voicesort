@@ -1,10 +1,7 @@
 package au.com.auspost.voicesort;
 
-import au.com.auspost.voicesort.dao.DeviceDao;
 import au.com.auspost.voicesort.service.DeviceService;
 import au.com.auspost.voicesort.web.filter.DeviceSecurityFilter;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +31,7 @@ public class Config {
         cacheManager.setCaches(Arrays.asList(new ConcurrentMapCache("devices")));
         return cacheManager;
     }
+
     @Bean
     public FilterRegistrationBean deviceSecurityFilterBean() {
         final FilterRegistrationBean filterRegBean = new FilterRegistrationBean();

@@ -1,13 +1,17 @@
 package au.com.auspost.voicesort.web.controller.rest;
 
+import au.com.auspost.voicesort.web.exception.ValidationException;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -22,9 +26,17 @@ import static java.util.stream.Collectors.toList;
 public class ApiValidationExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        BindingResult bindingResult = ex
-                .getBindingResult();
+        ApiErrorsView apiErrorsView = buildErrorsView(ex.getBindingResult());
+        return new ResponseEntity<>(apiErrorsView, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 
+    @ExceptionHandler(value = ValidationException.class)
+    protected ResponseEntity<Object> handleValidationException(ValidationException ve) {
+        ApiErrorsView apiErrorsView = buildErrorsView(ve.getBindingResult());
+        return new ResponseEntity<>(apiErrorsView, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    private ApiErrorsView buildErrorsView(BindingResult bindingResult) {
         List<ApiFieldError> apiFieldErrors = bindingResult
                 .getFieldErrors()
                 .stream()
@@ -45,9 +57,7 @@ public class ApiValidationExceptionHandler extends ResponseEntityExceptionHandle
                         .build())
                 .collect(toList());
 
-        ApiErrorsView apiErrorsView = new ApiErrorsView(apiFieldErrors, apiGlobalErrors);
-
-        return new ResponseEntity<>(apiErrorsView, HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ApiErrorsView(apiFieldErrors, apiGlobalErrors);
     }
 }
 
