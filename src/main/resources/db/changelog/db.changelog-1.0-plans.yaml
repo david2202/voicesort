@@ -33,7 +33,7 @@ databaseChangeLog:
                 value: Dandenong Amazon Victoria
             - column:
                 name: facility_id
-                valueComputed: SELECT id FROM facility WHERE name = 'Dandenong Letter Centre'
+                valueComputed: (SELECT id FROM facility WHERE name = 'Dandenong Letter Centre')
             - column:
                 name: print_ind
                 value: false
@@ -43,7 +43,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Albury
@@ -59,7 +59,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Albury'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Albury')
             - column:
                 name: postcode_start
                 value: 1936
@@ -71,7 +71,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Albury'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Albury')
             - column:
                 name: postcode_start
                 value: 2640
@@ -83,7 +83,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Albury'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Albury')
             - column:
                 name: postcode_start
                 value: 2649
@@ -95,7 +95,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Albury'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Albury')
             - column:
                 name: postcode_start
                 value: 2716
@@ -104,7 +104,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Albury'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Albury')
             - column:
                 name: postcode_start
                 value: 2720
@@ -117,7 +117,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Melbourne
@@ -133,7 +133,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 3000
@@ -142,7 +142,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 3001
@@ -151,7 +151,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 3005
@@ -160,7 +160,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 8000
@@ -172,7 +172,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 3002
@@ -184,7 +184,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Melbourne'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Melbourne')
             - column:
                 name: postcode_start
                 value: 3051
@@ -194,7 +194,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Geelong
@@ -210,7 +210,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3216
@@ -222,7 +222,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3220
@@ -231,7 +231,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3211
@@ -243,7 +243,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3218
@@ -255,7 +255,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3229
@@ -267,7 +267,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3292
@@ -279,7 +279,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Geelong'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Geelong')
             - column:
                 name: postcode_start
                 value: 3320
@@ -292,7 +292,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Ballarat
@@ -308,7 +308,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3350
@@ -317,7 +317,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3353
@@ -329,7 +329,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3290
@@ -341,7 +341,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3317
@@ -353,7 +353,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3342
@@ -365,7 +365,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3351
@@ -377,7 +377,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 33557
@@ -389,7 +389,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3455
@@ -401,7 +401,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 3464
@@ -413,7 +413,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Ballarat'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Ballarat')
             - column:
                 name: postcode_start
                 value: 5271
@@ -423,7 +423,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Bendigo
@@ -439,7 +439,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3550
@@ -448,7 +448,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3552
@@ -460,7 +460,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3444
@@ -472,7 +472,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3462
@@ -484,7 +484,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3488
@@ -496,7 +496,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3551
@@ -505,7 +505,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Bendigo'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Bendigo')
             - column:
                 name: postcode_start
                 value: 3557
@@ -518,7 +518,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Seymour
@@ -534,7 +534,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Seymour'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Seymour')
             - column:
                 name: postcode_start
                 value: 3600
@@ -547,7 +547,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Morwell
@@ -563,7 +563,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3825
@@ -575,7 +575,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3838
@@ -587,7 +587,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3812
@@ -599,7 +599,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3831
@@ -611,7 +611,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3847
@@ -623,7 +623,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3921
@@ -635,7 +635,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3945
@@ -647,7 +647,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3979
@@ -656,7 +656,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Morwell'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Morwell')
             - column:
                 name: postcode_start
                 value: 3984
@@ -669,7 +669,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: Northern & Western
@@ -685,7 +685,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Northern & Western'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Northern & Western')
             - column:
                 name: postcode_start
                 value: 3011
@@ -697,7 +697,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Northern & Western'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Northern & Western')
             - column:
                 name: postcode_start
                 value: 3335
@@ -709,7 +709,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Northern & Western'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Northern & Western')
             - column:
                 name: postcode_start
                 value: 3425
@@ -721,7 +721,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'Northern & Western'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'Northern & Western')
             - column:
                 name: postcode_start
                 value: 3750
@@ -734,7 +734,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: SOY
@@ -750,7 +750,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3006
@@ -759,7 +759,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3008
@@ -768,7 +768,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3101
@@ -780,7 +780,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3765
@@ -792,7 +792,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3782
@@ -801,7 +801,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3788
@@ -813,7 +813,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3796
@@ -822,7 +822,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3803
@@ -834,7 +834,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3809
@@ -846,7 +846,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3972
@@ -858,7 +858,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY')
             - column:
                 name: postcode_start
                 value: 3910
@@ -868,7 +868,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Dandenong Amazon Victoria')
             - column:
                 name: description
                 value: SOY Forward
@@ -884,7 +884,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3775
@@ -896,7 +896,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3795
@@ -905,7 +905,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3799
@@ -914,7 +914,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3808
@@ -923,7 +923,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3911
@@ -935,7 +935,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3926
@@ -947,7 +947,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOY Forward'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOY Forward')
             - column:
                 name: postcode_start
                 value: 3980
@@ -964,7 +964,7 @@ databaseChangeLog:
                 value: Melbourne Parcel Facility
             - column:
                 name: facility_id
-                valueComputed: SELECT id FROM facility WHERE name = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM facility WHERE name = 'Melbourne Parcel Facility')
             - column:
                 name: print_ind
                 value: false
@@ -974,7 +974,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: PT MELBOURNE
@@ -990,7 +990,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 3000
@@ -1002,7 +1002,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 3008
@@ -1014,7 +1014,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 3010
@@ -1026,7 +1026,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 3050
@@ -1038,7 +1038,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 3205
@@ -1050,7 +1050,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PT MELBOURNE')
             - column:
                 name: postcode_start
                 value: 8001
@@ -1063,7 +1063,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: RICHMOND
@@ -1079,7 +1079,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'RICHMOND')
             - column:
                 name: postcode_start
                 value: 3121
@@ -1091,7 +1091,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'RICHMOND')
             - column:
                 name: postcode_start
                 value: 3141
@@ -1103,7 +1103,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'RICHMOND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'RICHMOND')
             - column:
                 name: postcode_start
                 value: 3181
@@ -1116,7 +1116,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: TEMPLESTOWE
@@ -1132,7 +1132,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE')
             - column:
                 name: postcode_start
                 value: 3105
@@ -1144,7 +1144,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'TEMPLESTOWE')
             - column:
                 name: postcode_start
                 value: 3110
@@ -1157,7 +1157,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: MOOROOLBARK
@@ -1173,7 +1173,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK')
             - column:
                 name: postcode_start
                 value: 3116
@@ -1185,7 +1185,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK')
             - column:
                 name: postcode_start
                 value: 3136
@@ -1197,7 +1197,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK')
             - column:
                 name: postcode_start
                 value: 3140
@@ -1209,7 +1209,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK')
             - column:
                 name: postcode_start
                 value: 3765
@@ -1221,7 +1221,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOOROOLBARK')
             - column:
                 name: postcode_start
                 value: 3796
@@ -1234,7 +1234,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: OAKLEIGH
@@ -1250,7 +1250,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3101
@@ -1262,7 +1262,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3124
@@ -1274,7 +1274,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3126
@@ -1286,7 +1286,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3142
@@ -1298,7 +1298,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3163
@@ -1310,7 +1310,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3166
@@ -1322,7 +1322,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3171
@@ -1334,7 +1334,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3174
@@ -1346,7 +1346,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3800
@@ -1359,7 +1359,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'OAKLEIGH')
             - column:
                 name: postcode_start
                 value: 3101
@@ -1372,7 +1372,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: HAWTHORN
@@ -1388,7 +1388,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HAWTHORN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HAWTHORN')
             - column:
                 name: postcode_start
                 value: 3122
@@ -1401,7 +1401,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: KNOXFIELD
@@ -1417,7 +1417,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3113
@@ -1429,7 +1429,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3127
@@ -1441,7 +1441,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3158
@@ -1453,7 +1453,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3176
@@ -1465,7 +1465,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3178
@@ -1477,7 +1477,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3788
@@ -1489,7 +1489,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'KNOXFIELD')
             - column:
                 name: postcode_start
                 value: 3791
@@ -1502,7 +1502,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: MOORABBIN
@@ -1518,7 +1518,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3161
@@ -1530,7 +1530,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3165
@@ -1542,7 +1542,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3172
@@ -1554,7 +1554,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3186
@@ -1566,7 +1566,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3194
@@ -1578,7 +1578,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MOORABBIN')
             - column:
                 name: postcode_start
                 value: 3202
@@ -1591,7 +1591,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: SEAFORD
@@ -1607,7 +1607,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SEAFORD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SEAFORD')
             - column:
                 name: postcode_start
                 value: 3197
@@ -1620,7 +1620,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: NARRE WARREN
@@ -1636,7 +1636,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'NARRE WARREN'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'NARRE WARREN')
             - column:
                 name: postcode_start
                 value: 3803
@@ -1649,7 +1649,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: ST KILDA
@@ -1665,7 +1665,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ST KILDA')
             - column:
                 name: postcode_start
                 value: 3164
@@ -1677,7 +1677,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ST KILDA')
             - column:
                 name: postcode_start
                 value: 3175
@@ -1689,7 +1689,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ST KILDA')
             - column:
                 name: postcode_start
                 value: 3177
@@ -1701,7 +1701,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ST KILDA')
             - column:
                 name: postcode_start
                 value: 3182
@@ -1713,7 +1713,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ST KILDA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ST KILDA')
             - column:
                 name: postcode_start
                 value: 3802
@@ -1726,7 +1726,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: CRANBOURNE
@@ -1742,7 +1742,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE')
             - column:
                 name: postcode_start
                 value: 3910
@@ -1754,7 +1754,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE')
             - column:
                 name: postcode_start
                 value: 3980
@@ -1766,7 +1766,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'CRANBOURNE')
             - column:
                 name: postcode_start
                 value: 3975
@@ -1779,7 +1779,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: MORNINGTON
@@ -1795,7 +1795,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON')
             - column:
                 name: postcode_start
                 value: 3911
@@ -1807,7 +1807,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON')
             - column:
                 name: postcode_start
                 value: 3928
@@ -1819,7 +1819,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON')
             - column:
                 name: postcode_start
                 value: 3930
@@ -1831,7 +1831,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MORNINGTON')
             - column:
                 name: postcode_start
                 value: 3936
@@ -1844,7 +1844,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: ROSEBUD
@@ -1860,7 +1860,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'ROSEBUD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'ROSEBUD')
             - column:
                 name: postcode_start
                 value: 3941
@@ -1873,7 +1873,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: MT WAVERLEY
@@ -1889,7 +1889,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY')
             - column:
                 name: postcode_start
                 value: 3125
@@ -1901,7 +1901,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY')
             - column:
                 name: postcode_start
                 value: 3149
@@ -1913,7 +1913,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MT WAVERLEY')
             - column:
                 name: postcode_start
                 value: 3170
@@ -1926,7 +1926,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: BAYSWATER RE-SORTS
@@ -1942,7 +1942,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3139
@@ -1954,7 +1954,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3775
@@ -1966,7 +1966,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3777
@@ -1978,7 +1978,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3781
@@ -1990,7 +1990,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3785
@@ -2002,7 +2002,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3795
@@ -2014,7 +2014,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BAYSWATER RE-SORTS')
             - column:
                 name: postcode_start
                 value: 3799
@@ -2027,7 +2027,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: HASTINGS
@@ -2043,7 +2043,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HASTINGS')
             - column:
                 name: postcode_start
                 value: 3912
@@ -2055,7 +2055,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HASTINGS')
             - column:
                 name: postcode_start
                 value: 3926
@@ -2067,7 +2067,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HASTINGS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HASTINGS')
             - column:
                 name: postcode_start
                 value: 3929
@@ -2080,7 +2080,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: PAKENHAM
@@ -2096,7 +2096,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM')
             - column:
                 name: postcode_start
                 value: 3810
@@ -2108,7 +2108,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'PAKENHAM')
             - column:
                 name: postcode_start
                 value: 3981
@@ -2121,7 +2121,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: WHITTLESEA
@@ -2137,7 +2137,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA')
             - column:
                 name: postcode_start
                 value: 3750
@@ -2149,7 +2149,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA')
             - column:
                 name: postcode_start
                 value: 3754
@@ -2161,7 +2161,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'WHITTLESEA')
             - column:
                 name: postcode_start
                 value: 3757
@@ -2174,7 +2174,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: SUNBURY
@@ -2190,7 +2190,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SUNBURY'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SUNBURY')
             - column:
                 name: postcode_start
                 value: 3427
@@ -2203,7 +2203,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: BACCHUS MARSH
@@ -2219,7 +2219,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BACCHUS MARSH'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BACCHUS MARSH')
             - column:
                 name: postcode_start
                 value: 3340
@@ -2232,7 +2232,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: GISBORNE
@@ -2248,7 +2248,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GISBORNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GISBORNE')
             - column:
                 name: postcode_start
                 value: 3431
@@ -2260,7 +2260,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GISBORNE'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GISBORNE')
             - column:
                 name: postcode_start
                 value: 3437
@@ -2273,7 +2273,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: WESTERN FORWARDS
@@ -2289,7 +2289,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS')
             - column:
                 name: postcode_start
                 value: 3432
@@ -2301,7 +2301,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'WESTERN FORWARDS')
             - column:
                 name: postcode_start
                 value: 3440
@@ -2314,7 +2314,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: MELTON
@@ -2330,7 +2330,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MELTON')
             - column:
                 name: postcode_start
                 value: 3031
@@ -2342,7 +2342,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MELTON')
             - column:
                 name: postcode_start
                 value: 3039
@@ -2354,7 +2354,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MELTON')
             - column:
                 name: postcode_start
                 value: 3047
@@ -2366,7 +2366,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MELTON')
             - column:
                 name: postcode_start
                 value: 3049
@@ -2378,7 +2378,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'MELTON'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'MELTON')
             - column:
                 name: postcode_start
                 value: 3335
@@ -2391,7 +2391,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: HOPPERS CROSSING
@@ -2407,7 +2407,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING')
             - column:
                 name: postcode_start
                 value: 3011
@@ -2419,7 +2419,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'HOPPERS CROSSING')
             - column:
                 name: postcode_start
                 value: 3037
@@ -2432,7 +2432,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: EPPING
@@ -2448,7 +2448,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3046
@@ -2460,7 +2460,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3048
@@ -2472,7 +2472,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3055
@@ -2484,7 +2484,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3064
@@ -2496,7 +2496,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3070
@@ -2508,7 +2508,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3078
@@ -2520,7 +2520,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3081
@@ -2532,7 +2532,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3099
@@ -2544,7 +2544,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3752
@@ -2556,7 +2556,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'EPPING'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'EPPING')
             - column:
                 name: postcode_start
                 value: 3759
@@ -2569,7 +2569,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: SOMERTON FWD
@@ -2585,7 +2585,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD')
             - column:
                 name: postcode_start
                 value: 3063
@@ -2597,7 +2597,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD')
             - column:
                 name: postcode_start
                 value: 3753
@@ -2609,7 +2609,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD')
             - column:
                 name: postcode_start
                 value: 3756
@@ -2621,7 +2621,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD')
             - column:
                 name: postcode_start
                 value: 3762
@@ -2633,7 +2633,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SOMERTON FWD')
             - column:
                 name: postcode_start
                 value: 3764
@@ -2646,7 +2646,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: GEELONG
@@ -2662,7 +2662,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GEELONG')
             - column:
                 name: postcode_start
                 value: 3211
@@ -2674,7 +2674,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GEELONG')
             - column:
                 name: postcode_start
                 value: 3292
@@ -2686,7 +2686,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GEELONG'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GEELONG')
             - column:
                 name: postcode_start
                 value: 3320
@@ -2699,7 +2699,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: BALLARAT
@@ -2715,7 +2715,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BALLARAT')
             - column:
                 name: postcode_start
                 value: 3290
@@ -2727,7 +2727,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BALLARAT')
             - column:
                 name: postcode_start
                 value: 3317
@@ -2739,7 +2739,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BALLARAT')
             - column:
                 name: postcode_start
                 value: 3342
@@ -2751,7 +2751,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BALLARAT')
             - column:
                 name: postcode_start
                 value: 3455
@@ -2763,7 +2763,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BALLARAT'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BALLARAT')
             - column:
                 name: postcode_start
                 value: 3464
@@ -2776,7 +2776,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: BENDIGO
@@ -2792,7 +2792,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 2648
@@ -2804,7 +2804,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 2715
@@ -2816,7 +2816,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 2717
@@ -2828,7 +2828,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 2731
@@ -2840,7 +2840,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 3444
@@ -2852,7 +2852,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 3462
@@ -2864,7 +2864,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'BENDIGO'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'BENDIGO')
             - column:
                 name: postcode_start
                 value: 3488
@@ -2877,7 +2877,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: SEYMOUR
@@ -2893,7 +2893,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'SEYMOUR'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'SEYMOUR')
             - column:
                 name: postcode_start
                 value: 3600
@@ -2906,7 +2906,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_id
-                valueComputed: SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM sort_plan WHERE description = 'Melbourne Parcel Facility')
             - column:
                 name: description
                 value: GIPPSLAND
@@ -2922,7 +2922,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND')
             - column:
                 name: postcode_start
                 value: 3812
@@ -2934,7 +2934,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND')
             - column:
                 name: postcode_start
                 value: 3921
@@ -2946,7 +2946,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND')
             - column:
                 name: postcode_start
                 value: 3945
@@ -2958,7 +2958,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND')
             - column:
                 name: postcode_start
                 value: 3979
@@ -2970,7 +2970,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: sort_plan_break_id
-                valueComputed: SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND'
+                valueComputed: (SELECT id FROM sort_plan_break WHERE description = 'GIPPSLAND')
             - column:
                 name: postcode_start
                 value: 3984
@@ -2987,7 +2987,7 @@ databaseChangeLog:
                 value: Wine Conveyor
             - column:
                 name: facility_id
-                valueComputed: SELECT id FROM facility WHERE name = 'Melbourne Parcel Facility'
+                valueComputed: (SELECT id FROM facility WHERE name = 'Melbourne Parcel Facility')
             - column:
                 name: print_ind
                 value: true
@@ -5560,4 +5560,3 @@ databaseChangeLog:
             - column:
                 name: postcode_end
                 value:
-

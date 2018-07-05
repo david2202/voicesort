@@ -18,6 +18,15 @@ databaseChangeLog:
             columns:
             - column:
                 name: synonym
+                value: own
+            - column:
+                name: speech_word
+                value: 1
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
                 value: won
             - column:
                 name: speech_word
@@ -28,6 +37,15 @@ databaseChangeLog:
             - column:
                 name: synonym
                 value: two
+            - column:
+                name: speech_word
+                value: 2
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: do
             - column:
                 name: speech_word
                 value: 2
@@ -54,7 +72,52 @@ databaseChangeLog:
             columns:
             - column:
                 name: synonym
+                value: you
+            - column:
+                name: speech_word
+                value: 2
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
                 value: three
+            - column:
+                name: speech_word
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: free
+            - column:
+                name: speech_word
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: see
+            - column:
+                name: speech_word
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: sue
+            - column:
+                name: speech_word
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: through
             - column:
                 name: speech_word
                 value: 3
@@ -72,7 +135,25 @@ databaseChangeLog:
             columns:
             - column:
                 name: synonym
+                value: we
+            - column:
+                name: speech_word
+                value: 3
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
                 value: four
+            - column:
+                name: speech_word
+                value: 4
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: fall
             - column:
                 name: speech_word
                 value: 4
@@ -90,6 +171,24 @@ databaseChangeLog:
             columns:
             - column:
                 name: synonym
+                value: full
+            - column:
+                name: speech_word
+                value: 4
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: pho
+            - column:
+                name: speech_word
+                value: 4
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
                 value: five
             - column:
                 name: speech_word
@@ -99,7 +198,70 @@ databaseChangeLog:
             columns:
             - column:
                 name: synonym
+                value: bye
+            - column:
+                name: speech_word
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: buy
+            - column:
+                name: speech_word
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: live
+            - column:
+                name: speech_word
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: phi
+            - column:
+                name: speech_word
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: wi-fi
+            - column:
+                name: speech_word
+                value: 5
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
                 value: six
+            - column:
+                name: speech_word
+                value: 6
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: fix
+            - column:
+                name: speech_word
+                value: 6
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: sick
             - column:
                 name: speech_word
                 value: 6
@@ -136,6 +298,15 @@ databaseChangeLog:
             - column:
                 name: synonym
                 value: ate
+            - column:
+                name: speech_word
+                value: 8
+        - insert:
+            tableName: speech_synonym
+            columns:
+            - column:
+                name: synonym
+                value: eat
             - column:
                 name: speech_word
                 value: 8

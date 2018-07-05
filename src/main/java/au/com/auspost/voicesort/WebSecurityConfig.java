@@ -21,9 +21,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//            .sessionManagement()
-//                .sessionCreationPolicy(STATELESS)
-//                .and()
             .authorizeRequests()
                 .antMatchers(
                         "/sortplan*/**").authenticated()
