@@ -25,13 +25,14 @@ public class SortPlanBreakVO {
     private String description;
 
     @NotNull
-    @Size(min = 2, max = 40)
+    @Size(max = 40)
     private String displayOutcome;
 
-    @Size(min = 2, max = 40)
+    @Size(max = 40)
     private String spokenOutcome;
 
     @JsonInclude(NON_NULL)
+    @Size(max = 40)
     private String printedOutcome;
 
     @JsonInclude(NON_EMPTY)
