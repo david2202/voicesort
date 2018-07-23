@@ -120,8 +120,8 @@
                         return '<a href="' + [[@{/sortplan}]] + '/' + sortPlanId + '/break/' + row.id + '/ranges">' + row.description + '</a>';
                     },
                     "commands": function(column, row) {
-                        return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-pencil"></span></button> ' +
-                            '<button type="button" class="btn btn-xs btn-default command-delete" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-trash"></span></button>';
+                        return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '" data-toggle="tooltip" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button> ' +
+                               '<button type="button" class="btn btn-xs btn-default command-delete" data-row-id="' + row.id + '" data-toggle="tooltip" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>';
                     }
                 }
             }).on("loaded.rs.jquery.bootgrid", function() {

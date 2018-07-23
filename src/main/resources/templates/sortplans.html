@@ -118,8 +118,9 @@
                         }
                     },
                     "commands": function(column, row) {
-                        return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-pencil"></span></button> ' +
-                            '<button type="button" class="btn btn-xs btn-default command-delete" data-row-id="' + row.id + '"><span class="glyphicon glyphicon-trash"></span></button>';
+                        return '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '" data-toggle="tooltip" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button> ' +
+                               '<button type="button" class="btn btn-xs btn-default command-copy" data-row-id="' + row.id + '" data-toggle="tooltip" title="Copy"><span class="glyphicon glyphicon-copy"></span></button>' +
+                               '<button type="button" class="btn btn-xs btn-default command-delete" data-row-id="' + row.id + '" data-toggle="tooltip" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>';
                     }
                 }
             }).on("loaded.rs.jquery.bootgrid", function() {
@@ -143,7 +144,10 @@
                         $("#deleteSortPlanDescription").text(response.description);
                         $("#deleteSortPlan").modal('show');
                     });
-                });
+                }).end().find(".command-copy").on("click", function(e) {
+                    var id = $(this).data("row-id");
+                    copySortPlan(id);
+                });;
             });
 
             $("#grid-basic-header")
@@ -274,6 +278,26 @@
                 url : [[@{/rest/api/sortPlan/}]] + id,
                 success : function(response) {
                     callback(response);
+                },
+                error : function(xhr, textStatus, errorThrown) {
+                    alert("An unexpected error has occurred " + errorThrown);
+                }
+            });
+        }
+
+        function copySortPlan(id) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+            $.ajax({
+                type : "POST",
+                url : [[@{/rest/api/sortPlan}]] + '?' + jQuery.param({action: "copy"}),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    [header]: token
+                },
+                success : function(response) {
+
                 },
                 error : function(xhr, textStatus, errorThrown) {
                     alert("An unexpected error has occurred " + errorThrown);

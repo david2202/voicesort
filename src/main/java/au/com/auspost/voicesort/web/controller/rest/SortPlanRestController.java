@@ -3,12 +3,10 @@ package au.com.auspost.voicesort.web.controller.rest;
 import au.com.auspost.voicesort.domain.Facility;
 import au.com.auspost.voicesort.domain.SortPlan;
 import au.com.auspost.voicesort.domain.SortPlanBreak;
-import au.com.auspost.voicesort.domain.SortPlanBreakRange;
 import au.com.auspost.voicesort.service.FacilityService;
 import au.com.auspost.voicesort.service.SortPlanService;
-import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakRangeVO;
-import au.com.auspost.voicesort.web.controller.rest.value.SortPlanBreakVO;
 import au.com.auspost.voicesort.web.controller.rest.value.SortPlanVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +15,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(path = "/rest/api")
@@ -51,21 +47,27 @@ public class SortPlanRestController {
     }
 
     @RequestMapping(value = "/sortPlan", method = POST)
-    public SortPlanVO save(@RequestBody @Valid SortPlanVO sortPlanVO, HttpServletResponse response) {
-        Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
-        if (facility == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    public SortPlanVO save(@RequestBody @Valid SortPlanVO sortPlanVO,
+                           @RequestParam(value = "action", required = false) String action,
+                           HttpServletResponse response) {
+        if (StringUtils.equals(action, "action")) {
             return null;
+        } else {
+            Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
+            if (facility == null) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                return null;
+            }
+            SortPlan sortPlan = sortPlanVO.getId() == null ? new SortPlan() : sortPlanService.load(sortPlanVO.getId());
+
+            sortPlan.setId(sortPlanVO.getId());
+            sortPlan.setDescription(sortPlanVO.getDescription());
+            sortPlan.setFacility(facility);
+            sortPlan.setPrint(sortPlanVO.getPrint());
+
+            sortPlanService.save(sortPlan);
+            return SortPlanVO.build(sortPlan, false);
         }
-        SortPlan sortPlan = sortPlanVO.getId() == null ? new SortPlan() : sortPlanService.load(sortPlanVO.getId());
-
-        sortPlan.setId(sortPlanVO.getId());
-        sortPlan.setDescription(sortPlanVO.getDescription());
-        sortPlan.setFacility(facility);
-        sortPlan.setPrint(sortPlanVO.getPrint());
-
-        sortPlanService.save(sortPlan);
-        return SortPlanVO.build(sortPlan, false);
     }
 
     @RequestMapping(value = "/sortPlan/{id}", method = DELETE)
