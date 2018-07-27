@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.*;
 import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_ONLY;
@@ -39,4 +41,21 @@ public class SortPlan extends BaseEntity {
     @Getter @Setter
     @Column(name = "print_ind")
     private Boolean print;
+
+    public SortPlan add(SortPlanBreak sortPlanBreak) {
+        this.sortPlanBreaks.add(sortPlanBreak);
+        sortPlanBreak.setSortPlan(this);
+        return this;
+    }
+
+    public SortPlan copy() {
+        SortPlan sortPlanCopy = SortPlan.builder()
+                .facility(this.getFacility())
+                .description(this.description)
+                .print(this.print)
+                .sortPlanBreaks(new ArrayList<>())
+                .build();
+        this.sortPlanBreaks.forEach(spb -> sortPlanCopy.add(spb.copy()));
+        return sortPlanCopy;
+    }
 }

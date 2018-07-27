@@ -32,6 +32,16 @@ public class SortPlanRestController {
         return SortPlanVO.build(sortPlanService.load(id), true);
     }
 
+    @RequestMapping(value = "/sortPlan/{id}", method = PUT)
+    public SortPlanVO put(@PathVariable("id") int id,
+                          @RequestParam(value = "action") String action) {
+        SortPlan sortPlan = sortPlanService.load(id);
+        SortPlan sortPlanCopy = sortPlan.copy();
+        sortPlanCopy.setDescription(sortPlanCopy.getDescription() + " (Copy)");
+        sortPlanService.save(sortPlanCopy);
+        return SortPlanVO.build(sortPlanCopy, false);
+    }
+
     @RequestMapping(value = "/sortPlan/{id}/break", method = GET)
     public SortPlanBreak findBreak(@PathVariable("id") int sortPlanId,
                                    @RequestParam("postCode") Integer postCode) {
@@ -47,27 +57,21 @@ public class SortPlanRestController {
     }
 
     @RequestMapping(value = "/sortPlan", method = POST)
-    public SortPlanVO save(@RequestBody @Valid SortPlanVO sortPlanVO,
-                           @RequestParam(value = "action", required = false) String action,
-                           HttpServletResponse response) {
-        if (StringUtils.equals(action, "action")) {
+    public SortPlanVO save(@RequestBody @Valid SortPlanVO sortPlanVO, HttpServletResponse response) {
+        Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
+        if (facility == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return null;
-        } else {
-            Facility facility = facilityService.load(sortPlanVO.getFacility().getId());
-            if (facility == null) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                return null;
-            }
-            SortPlan sortPlan = sortPlanVO.getId() == null ? new SortPlan() : sortPlanService.load(sortPlanVO.getId());
-
-            sortPlan.setId(sortPlanVO.getId());
-            sortPlan.setDescription(sortPlanVO.getDescription());
-            sortPlan.setFacility(facility);
-            sortPlan.setPrint(sortPlanVO.getPrint());
-
-            sortPlanService.save(sortPlan);
-            return SortPlanVO.build(sortPlan, false);
         }
+        SortPlan sortPlan = sortPlanVO.getId() == null ? new SortPlan() : sortPlanService.load(sortPlanVO.getId());
+
+        sortPlan.setId(sortPlanVO.getId());
+        sortPlan.setDescription(sortPlanVO.getDescription());
+        sortPlan.setFacility(facility);
+        sortPlan.setPrint(sortPlanVO.getPrint());
+
+        sortPlanService.save(sortPlan);
+        return SortPlanVO.build(sortPlan, false);
     }
 
     @RequestMapping(value = "/sortPlan/{id}", method = DELETE)
